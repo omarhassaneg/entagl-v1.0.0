@@ -3,57 +3,68 @@ const industries = [
   {
     title: 'Fitness',
     description: 'AI solutions for gym management and member engagement',
-    color: 'from-[#0d9488] to-[#3b82f6]'
+    color: 'from-[#0d9488] to-[#3b82f6]',
+    href: '/industries/gym-studios'
   },
   {
     title: 'Restaurants',
     description: 'Streamline operations and enhance customer service',
-    color: 'from-[#0db487] to-[#4a90e2]'
+    color: 'from-[#0db487] to-[#4a90e2]',
+    href: '/industries/restaurants'
   },
   {
     title: 'Salons',
     description: 'Automated booking and client management',
-    color: 'from-[#0da695] to-[#5a8df4]'
+    color: 'from-[#0da695] to-[#5a8df4]',
+    href: '/industries/beauty-salons'
   },
   {
     title: 'Healthcare',
     description: 'Patient care and practice management solutions',
-    color: 'from-[#0d8c9c] to-[#6a7ef6]'
+    color: 'from-[#0d8c9c] to-[#6a7ef6]',
+    href: '/industries/healthcare'
   },
   {
     title: 'Events',
     description: 'Event planning and coordination automation',
-    color: 'from-[#0d7f9c] to-[#7a6ff6]'
+    color: 'from-[#0d7f9c] to-[#7a6ff6]',
+    href: '/industries/event-planners'
   },
   {
     title: 'Influencers',
     description: 'Content management and audience engagement',
-    color: 'from-[#0d72a4] to-[#8a60f6]'
+    color: 'from-[#0d72a4] to-[#8a60f6]',
+    href: '/industries/influencers'
   },
   {
     title: 'Dealerships',
     description: 'Vehicle inventory and customer relationship management',
-    color: 'from-[#0d65b4] to-[#9a50f6]'
+    color: 'from-[#0d65b4] to-[#9a50f6]',
+    href: '/industries/car-dealerships'
   },
   {
     title: 'E-commerce',
     description: 'Online store automation and customer support',
-    color: 'from-[#0d58c4] to-[#aa40f6]'
+    color: 'from-[#0d58c4] to-[#aa40f6]',
+    href: '/industries/ecommerce'
   },
   {
     title: 'Lawyers',
     description: 'Case management and client communication',
-    color: 'from-[#0d4bd4] to-[#ba30f6]'
+    color: 'from-[#0d4bd4] to-[#ba30f6]',
+    href: '/industries/legal-accounting'
   },
   {
     title: 'Accountants',
     description: 'Financial management and client services',
-    color: 'from-[#0d3ee4] to-[#ca20f6]'
+    color: 'from-[#0d3ee4] to-[#ca20f6]',
+    href: '/industries/legal-accounting'
   },
   {
     title: 'Consultants',
     description: 'Business advisory and client engagement',
-    color: 'from-[#0d31f4] to-[#da10f6]'
+    color: 'from-[#0d31f4] to-[#da10f6]',
+    href: '/use-cases/lead-qualification'
   }
 ];
 
@@ -68,7 +79,8 @@ const industries = [
 
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
       {industries.map((industry, index) => (
-        <div 
+        <a 
+          href={industry.href}
           class="group cursor-pointer"
           data-aos="fade-up"
           data-aos-delay={index * 100}
@@ -85,7 +97,7 @@ const industries = [
               </div>
             </div>
           </div>
-        </div>
+        </a>
       ))}
     </div>
   </div>
@@ -97,7 +109,7 @@ const industries = [
   }
 
   @media (min-width: 640px) {
-    .grid > div:nth-child(3n) {
+    .grid > a:nth-child(3n) {
       grid-row: span 2;
     }
   }
