@@ -8,7 +8,8 @@
     "start": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "astro": "astro"
+    "astro": "astro",
+    "generate-blog-data": "astro sync && node scripts/generate-blog-data.js"
   },
   "dependencies": {
     "@astrojs/react": "^4.0.0",

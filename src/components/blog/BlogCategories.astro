@@ -1,114 +1,92 @@
 ---
-const categories = [
-  { name: 'All', count: 42 },
-  { name: 'AI Technology', count: 15 },
-  { name: 'Business', count: 12 },
-  { name: 'Case Studies', count: 8 },
-  { name: 'Industry News', count: 7 }
-];
+interface Props {
+  categories: Record<string, number>;
+}
+
+const { categories } = Astro.props;
 ---
 
 <div class="flex flex-wrap items-center gap-3 justify-center mt-2" data-aos="fade-up">
   <div class="flex flex-wrap gap-3 justify-center">
-    {categories.map((category, index) => (
+    {Object.entries(categories).map(([category, count], index) => (
       <button 
-        data-category={category.name}
-        class={`px-6 py-2 rounded-full text-sm font-medium transition-all duration-200 category-filter ${
+        data-category={category}
+        class={`category-filter px-6 py-2 rounded-full text-sm font-medium transition-all duration-200 ${
           index === 0 
             ? 'active bg-gradient-to-r from-[#0d9488] to-[#3b82f6] text-white' 
             : 'bg-white/10 text-white-600 hover:bg-white/20'
         }`}
       >
-        {category.name}
-        <span class="ml-2 text-xs opacity-60">({category.count})</span>
+        {category}
+        <span class="ml-2 text-xs opacity-60">({count})</span>
       </button>
     ))}
   </div>
   
   <button 
-    id="clear-filter"
-    class="px-6 py-2 rounded-full text-sm font-medium transition-all duration-200 border border-white/20 text-white-600 hover:bg-white/10 hover:border-white/40 opacity-0 pointer-events-none"
+    id="clear-filters"
+    class="px-6 py-2 rounded-full text-sm font-medium transition-all duration-200 border border-white/20 text-white-600 hover:bg-white/10 hover:border-white/40 hidden"
   >
     <div class="flex items-center gap-2">
       <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
       </svg>
-      Clear Filter
+      Clear Filters
     </div>
   </button>
 </div>
 
 <script>
-  const filterButtons = document.querySelectorAll('.category-filter');
-  const blogCards = document.querySelectorAll('[data-category]');
-  const clearFilterBtn = document.getElementById('clear-filter');
-  const defaultFilter = document.querySelector('[data-category="All"]');
+  const categoryButtons = document.querySelectorAll('.category-filter');
+  const clearFiltersButton = document.getElementById('clear-filters');
+  const blogGrid = document.getElementById('blog-grid');
+  const allPosts = document.querySelectorAll('[data-category]');
 
-  function resetFilters() {
-    // Reset all cards
-    blogCards.forEach(card => {
-      card.style.display = 'block';
-      card.style.opacity = '1';
-      card.style.transform = 'translateY(0)';
+  function updateActiveState(activeButton) {
+    categoryButtons.forEach(button => {
+      button.classList.remove('active', 'bg-gradient-to-r', 'from-[#0d9488]', 'to-[#3b82f6]', 'text-white');
+      button.classList.add('bg-white/10', 'text-white-600');
     });
 
-    // Reset button styles
-    filterButtons.forEach(btn => {
-      btn.classList.remove('active', 'bg-gradient-to-r', 'from-[#0d9488]', 'to-[#3b82f6]', 'text-white');
-      btn.classList.add('bg-white/10', 'text-white-600');
-    });
-
-    // Set "All" as active
-    defaultFilter.classList.remove('bg-white/10', 'text-white-600');
-    defaultFilter.classList.add('active', 'bg-gradient-to-r', 'from-[#0d9488]', 'to-[#3b82f6]', 'text-white');
-
-    // Hide clear filter button
-    clearFilterBtn.style.opacity = '0';
-    clearFilterBtn.style.pointerEvents = 'none';
+    if (activeButton) {
+      activeButton.classList.remove('bg-white/10', 'text-white-600');
+      activeButton.classList.add('active', 'bg-gradient-to-r', 'from-[#0d9488]', 'to-[#3b82f6]', 'text-white');
+    }
   }
 
-  clearFilterBtn.addEventListener('click', resetFilters);
-
-  filterButtons.forEach(button => {
-    button.addEventListener('click', () => {
-      const selectedCategory = button.getAttribute('data-category');
-      
-      // Update button states
-      filterButtons.forEach(btn => {
-        btn.classList.remove('active', 'bg-gradient-to-r', 'from-[#0d9488]', 'to-[#3b82f6]', 'text-white');
-        btn.classList.add('bg-white/10', 'text-white-600');
-      });
-      
-      button.classList.remove('bg-white/10', 'text-white-600');
-      button.classList.add('active', 'bg-gradient-to-r', 'from-[#0d9488]', 'to-[#3b82f6]', 'text-white');
-
-      // Show/hide clear filter button
-      if (selectedCategory === 'All') {
-        clearFilterBtn.style.opacity = '0';
-        clearFilterBtn.style.pointerEvents = 'none';
+  function filterPosts(category) {
+    allPosts.forEach(post => {
+      const postCategory = post.getAttribute('data-category');
+      if (category === 'All' || postCategory === category) {
+        post.style.display = '';
+        post.classList.add('fade-in');
       } else {
-        clearFilterBtn.style.opacity = '1';
-        clearFilterBtn.style.pointerEvents = 'auto';
+        post.style.display = 'none';
+        post.classList.remove('fade-in');
+      }
+    });
+  }
+
+  categoryButtons.forEach(button => {
+    button.addEventListener('click', () => {
+      const category = button.getAttribute('data-category');
+      
+      if (category === 'All') {
+        clearFiltersButton.classList.add('hidden');
+      } else {
+        clearFiltersButton.classList.remove('hidden');
       }
 
-      // Filter blog posts
-      blogCards.forEach(card => {
-        const cardCategory = card.getAttribute('data-category');
-        if (selectedCategory === 'All' || selectedCategory === cardCategory) {
-          card.style.display = 'block';
-          // Add fade-in animation
-          card.style.opacity = '0';
-          card.style.transform = 'translateY(20px)';
-          requestAnimationFrame(() => {
-            card.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
-            card.style.opacity = '1';
-            card.style.transform = 'translateY(0)';
-          });
-        } else {
-          card.style.display = 'none';
-        }
-      });
+      updateActiveState(button);
+      filterPosts(category);
     });
+  });
+
+  clearFiltersButton?.addEventListener('click', () => {
+    const allButton = document.querySelector('[data-category="All"]');
+    updateActiveState(allButton);
+    filterPosts('All');
+    clearFiltersButton.classList.add('hidden');
   });
 </script>
 
@@ -125,11 +103,18 @@ const categories = [
     box-shadow: 0 4px 12px rgba(13, 148, 136, 0.2);
   }
 
-  #clear-filter {
-    transition: all 0.3s ease;
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
   }
 
-  #clear-filter:hover {
-    transform: translateY(-2px);
+  .fade-in {
+    animation: fadeIn 0.3s ease forwards;
   }
 </style>

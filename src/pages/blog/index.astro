@@ -6,6 +6,19 @@ import BlogCategories from '../../components/blog/BlogCategories.astro';
 import { getAllPosts } from '../../utils/blog';
 
 const posts = await getAllPosts();
+
+// Calculate category counts
+const categories = posts.reduce((acc, post) => {
+  const category = post.category;
+  acc[category] = (acc[category] || 0) + 1;
+  return acc;
+}, {});
+
+// Add "All" category with total count
+const allCategories = {
+  All: posts.length,
+  ...categories
+};
 ---
 
 <Layout 
@@ -16,19 +29,163 @@ const posts = await getAllPosts();
   
   <section class="py-20">
     <div class="container mx-auto px-4">
-      <BlogCategories />
+      <BlogCategories categories={allCategories} />
       
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-12">
+      <div id="blog-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-12">
         {posts.map((post) => (
           <BlogCard post={post} />
         ))}
       </div>
 
-      <div class="mt-12 flex justify-center">
-        <button class="px-8 py-3 bg-gradient-to-r from-[#0d9488] to-[#3b82f6] text-white rounded-lg font-medium hover:from-[#0b847a] hover:to-[#2563eb] transition-all duration-200 transform hover:-translate-y-1 hover:shadow-lg">
+      <div id="load-more-container" class="mt-12 flex justify-center">
+        <button 
+          id="load-more"
+          class="px-8 py-3 bg-gradient-to-r from-[#0d9488] to-[#3b82f6] text-white rounded-lg font-medium hover:from-[#0b847a] hover:to-[#2563eb] transition-all duration-200 transform hover:-translate-y-1 hover:shadow-lg"
+        >
           Load More
         </button>
       </div>
     </div>
   </section>
 </Layout>
+
+<script>
+  let currentPage = 1;
+  const postsPerPage = 6;
+  let allPosts = [];
+  let filteredPosts = [];
+  let currentCategory = 'All';
+
+  // Initialize
+  async function init() {
+    const response = await fetch('/api/posts');
+    allPosts = await response.json();
+    filteredPosts = [...allPosts];
+    updateVisibility();
+  }
+
+  // Filter posts by category
+  function filterPosts(category) {
+    currentCategory = category;
+    currentPage = 1;
+    
+    filteredPosts = category === 'All' 
+      ? [...allPosts]
+      : allPosts.filter(post => post.category === category);
+
+    // Clear grid
+    const grid = document.getElementById('blog-grid');
+    grid.innerHTML = '';
+
+    // Add initial posts
+    const initialPosts = filteredPosts.slice(0, postsPerPage);
+    initialPosts.forEach(post => {
+      const card = createBlogCard(post);
+      grid.appendChild(card);
+    });
+
+    updateVisibility();
+  }
+
+  // Create blog card element
+  function createBlogCard(post) {
+    const article = document.createElement('article');
+    article.className = 'group bg-white/5 rounded-2xl overflow-hidden hover:bg-white/10 transition-all duration-300';
+    article.setAttribute('data-aos', 'fade-up');
+    article.setAttribute('data-category', post.category);
+
+    article.innerHTML = `
+      <a href="/blog/${post.slug}" class="block">
+        <div class="relative aspect-[16/9] overflow-hidden">
+          <img 
+            src="${post.image}" 
+            alt="${post.title}"
+            class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-300"
+          />
+          <div class="absolute top-4 left-4">
+            <span class="px-3 py-1 text-xs font-medium bg-primary-600 text-white rounded-full">
+              ${post.category}
+            </span>
+          </div>
+        </div>
+        
+        <div class="p-6">
+          <div class="flex items-center gap-4 mb-4">
+            <div class="flex items-center gap-2">
+              <img 
+                src="${post.author.avatar}" 
+                alt="${post.author.name}"
+                class="w-6 h-6 rounded-full"
+              />
+              <span class="text-sm text-white-600">${post.author.name}</span>
+            </div>
+            <span class="text-sm text-white-600">·</span>
+            <span class="text-sm text-white-600">${post.readTime}</span>
+          </div>
+          
+          <h3 class="text-xl font-semibold text-white mb-2 group-hover:text-primary-600 transition-colors">
+            ${post.title}
+          </h3>
+          
+          <p class="text-white-600 mb-4 line-clamp-2">
+            ${post.excerpt}
+          </p>
+          
+          <div class="flex items-center text-primary-600 font-medium">
+            Read More
+            <svg class="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+            </svg>
+          </div>
+        </div>
+      </a>
+    `;
+
+    return article;
+  }
+
+  // Load more posts
+  function loadMore() {
+    const start = currentPage * postsPerPage;
+    const end = start + postsPerPage;
+    const nextPosts = filteredPosts.slice(start, end);
+    
+    if (nextPosts.length > 0) {
+      const grid = document.getElementById('blog-grid');
+      nextPosts.forEach(post => {
+        const card = createBlogCard(post);
+        grid.appendChild(card);
+      });
+      
+      currentPage++;
+      updateVisibility();
+    }
+  }
+
+  // Update load more button visibility
+  function updateVisibility() {
+    const loadMoreBtn = document.getElementById('load-more');
+    const container = document.getElementById('load-more-container');
+    
+    const start = currentPage * postsPerPage;
+    if (start >= filteredPosts.length) {
+      container.style.display = 'none';
+    } else {
+      container.style.display = 'flex';
+    }
+  }
+
+  // Initialize
+  init();
+
+  // Add event listeners
+  document.getElementById('load-more')?.addEventListener('click', loadMore);
+
+  // Add category filter listeners
+  document.querySelectorAll('.category-filter').forEach(button => {
+    button.addEventListener('click', () => {
+      const category = button.getAttribute('data-category');
+      filterPosts(category);
+    });
+  });
+</script>
