@@ -8,14 +8,18 @@ const { categories } = Astro.props;
 
 <div class="flex flex-wrap items-center gap-3 justify-center mt-2" data-aos="fade-up">
   <div class="flex flex-wrap gap-3 justify-center">
-    {Object.entries(categories).map(([category, count], index) => (
+    <button 
+      data-category="All"
+      class="category-filter px-6 py-2 rounded-full text-sm font-medium transition-all duration-200 bg-gradient-to-r from-[#0d9488] to-[#3b82f6] text-white active"
+    >
+      All
+      <span class="ml-2 text-xs opacity-60">({categories.All})</span>
+    </button>
+    
+    {Object.entries(categories).filter(([category]) => category !== 'All').map(([category, count]) => (
       <button 
         data-category={category}
-        class={`category-filter px-6 py-2 rounded-full text-sm font-medium transition-all duration-200 ${
-          index === 0 
-            ? 'active bg-gradient-to-r from-[#0d9488] to-[#3b82f6] text-white' 
-            : 'bg-white/10 text-white-600 hover:bg-white/20'
-        }`}
+        class="category-filter px-6 py-2 rounded-full text-sm font-medium transition-all duration-200 bg-white/10 text-white-600 hover:bg-white/20"
       >
         {category}
         <span class="ml-2 text-xs opacity-60">({count})</span>
@@ -39,54 +43,47 @@ const { categories } = Astro.props;
 <script>
   const categoryButtons = document.querySelectorAll('.category-filter');
   const clearFiltersButton = document.getElementById('clear-filters');
-  const blogGrid = document.getElementById('blog-grid');
-  const allPosts = document.querySelectorAll('[data-category]');
 
-  function updateActiveState(activeButton) {
+  function updateActiveState(selectedCategory) {
     categoryButtons.forEach(button => {
-      button.classList.remove('active', 'bg-gradient-to-r', 'from-[#0d9488]', 'to-[#3b82f6]', 'text-white');
-      button.classList.add('bg-white/10', 'text-white-600');
+      const category = button.getAttribute('data-category');
+      if (category === selectedCategory) {
+        button.classList.remove('bg-white/10', 'text-white-600');
+        button.classList.add('bg-gradient-to-r', 'from-[#0d9488]', 'to-[#3b82f6]', 'text-white', 'active');
+      } else {
+        button.classList.remove('bg-gradient-to-r', 'from-[#0d9488]', 'to-[#3b82f6]', 'text-white', 'active');
+        button.classList.add('bg-white/10', 'text-white-600');
+      }
     });
 
-    if (activeButton) {
-      activeButton.classList.remove('bg-white/10', 'text-white-600');
-      activeButton.classList.add('active', 'bg-gradient-to-r', 'from-[#0d9488]', 'to-[#3b82f6]', 'text-white');
+    // Show/hide clear filters button
+    if (selectedCategory === 'All') {
+      clearFiltersButton.classList.add('hidden');
+    } else {
+      clearFiltersButton.classList.remove('hidden');
     }
   }
 
-  function filterPosts(category) {
-    allPosts.forEach(post => {
-      const postCategory = post.getAttribute('data-category');
-      if (category === 'All' || postCategory === category) {
-        post.style.display = '';
-        post.classList.add('fade-in');
-      } else {
-        post.style.display = 'none';
-        post.classList.remove('fade-in');
-      }
+  function dispatchFilterEvent(category) {
+    const event = new CustomEvent('filterCategory', {
+      detail: { category }
     });
+    document.dispatchEvent(event);
   }
 
+  // Add click handlers to category buttons
   categoryButtons.forEach(button => {
     button.addEventListener('click', () => {
       const category = button.getAttribute('data-category');
-      
-      if (category === 'All') {
-        clearFiltersButton.classList.add('hidden');
-      } else {
-        clearFiltersButton.classList.remove('hidden');
-      }
-
-      updateActiveState(button);
-      filterPosts(category);
+      updateActiveState(category);
+      dispatchFilterEvent(category);
     });
   });
 
+  // Add click handler to clear filters button
   clearFiltersButton?.addEventListener('click', () => {
-    const allButton = document.querySelector('[data-category="All"]');
-    updateActiveState(allButton);
-    filterPosts('All');
-    clearFiltersButton.classList.add('hidden');
+    updateActiveState('All');
+    dispatchFilterEvent('All');
   });
 </script>
 
@@ -101,20 +98,5 @@ const { categories } = Astro.props;
 
   .category-filter.active {
     box-shadow: 0 4px 12px rgba(13, 148, 136, 0.2);
-  }
-
-  @keyframes fadeIn {
-    from {
-      opacity: 0;
-      transform: translateY(10px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
-
-  .fade-in {
-    animation: fadeIn 0.3s ease forwards;
   }
 </style>
