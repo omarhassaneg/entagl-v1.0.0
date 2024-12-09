@@ -1,0 +1,100 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const caseStudies = [
+  {
+    title: 'AI Transformation in Retail',
+    description: 'How a global retail chain achieved 40% increase in customer satisfaction through AI implementation.',
+    category: 'Retail',
+    image: 'https://images.unsplash.com/photo-1552664730-d307ca884978',
+    results: ['40% increase in satisfaction', '60% faster response times', '30% cost reduction'],
+    link: '/blog/ai-transformation-success'
+  },
+  {
+    title: 'Healthcare Innovation with AI',
+    description: 'Revolutionizing patient care with AI-powered scheduling and follow-ups.',
+    category: 'Healthcare',
+    image: 'https://images.unsplash.com/photo-1551434678-e076c223a692',
+    results: ['50% reduction in wait times', '35% more appointments', '90% patient satisfaction'],
+    link: '#'
+  },
+  {
+    title: 'Fitness Studio Automation',
+    description: 'Streamlining operations and enhancing member experience through AI solutions.',
+    category: 'Fitness',
+    image: 'https://images.unsplash.com/photo-1534438327276-14e5300c3a48',
+    results: ['45% more member engagement', '25% revenue increase', '4.8/5 member rating'],
+    link: '#'
+  }
+];
+---
+
+<Layout 
+  title="Case Studies | AI Implementation Success Stories"
+  description="Explore real-world examples of successful AI implementation across various industries."
+>
+  <div class="pt-32 pb-20">
+    <div class="container mx-auto px-4">
+      <!-- Header -->
+      <div class="text-center mb-16">
+        <span class="text-sm font-semibold text-primary-600 uppercase tracking-wider">Success Stories</span>
+        <h1 class="text-4xl lg:text-5xl font-bold text-white mt-4 mb-6">
+          Transforming Businesses with AI
+        </h1>
+        <p class="text-xl text-white-600 max-w-3xl mx-auto">
+          Discover how businesses across different industries have revolutionized their operations and achieved remarkable results with our AI solutions.
+        </p>
+      </div>
+
+      <!-- Case Studies Grid -->
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {caseStudies.map((study) => (
+          <a 
+            href={study.link}
+            class="group bg-white/5 rounded-2xl overflow-hidden hover:bg-white/10 transition-all duration-300 border border-white/10"
+          >
+            <div class="relative aspect-video overflow-hidden">
+              <img 
+                src={study.image} 
+                alt={study.title}
+                class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-300"
+              />
+              <div class="absolute top-4 left-4">
+                <span class="px-3 py-1 text-xs font-medium bg-primary-600 text-white rounded-full">
+                  {study.category}
+                </span>
+              </div>
+            </div>
+            
+            <div class="p-6">
+              <h3 class="text-xl font-semibold text-white mb-3 group-hover:text-primary-600 transition-colors">
+                {study.title}
+              </h3>
+              <p class="text-white-600 mb-6">
+                {study.description}
+              </p>
+              
+              <div class="space-y-2">
+                {study.results.map((result) => (
+                  <div class="flex items-center text-white-600">
+                    <svg class="w-5 h-5 text-primary-600 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                    </svg>
+                    {result}
+                  </div>
+                ))}
+              </div>
+              
+              <div class="mt-6 flex items-center text-primary-600 font-medium">
+                Read Case Study
+                <svg class="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                </svg>
+              </div>
+            </div>
+          </a>
+        ))}
+      </div>
+    </div>
+  </div>
+</Layout>

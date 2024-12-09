@@ -1,0 +1,72 @@
+---
+const businessPages = [
+  { href: '/industries/car-dealerships', text: 'Car Dealerships' },
+  { href: '/industries/beauty-salons', text: 'Beauty Salons' },
+  { href: '/industries/gym-studios', text: 'Gym Studios & Fitness' },
+  { href: '/industries/legal-accounting', text: 'Lawyers & Accountants' },
+  { href: '/industries/event-planners', text: 'Event Planners' },
+  { href: '/industries/healthcare', text: 'Healthcare Practices' },
+  { href: '/industries/ecommerce', text: 'E-commerce' },
+  { href: '/industries/restaurants', text: 'Restaurants' },
+  { href: '/industries/influencers', text: 'Influencers and Coaches' }
+];
+
+const useCases = [
+  { href: '/use-cases/lead-qualification', text: 'Lead Qualification' }
+];
+
+const navItems = [
+  { 
+    href: '/industries', 
+    text: 'Your Business',
+    dropdownItems: businessPages
+  },
+  { 
+    href: '/use-cases', 
+    text: 'Use Cases',
+    dropdownItems: useCases
+  },
+  { href: '/case-studies', text: 'Case Studies' },
+  { href: '/blog', text: 'Blog' }
+];
+---
+
+<nav class="hidden md:flex items-center space-x-8">
+  {navItems.map(item => (
+    <div class="relative group">
+      <a 
+        href={item.href}
+        class="text-[#14b8a6] hover:text-[#14b8a6] font-medium transition-all duration-200 flex items-center text-sm lg:text-base group-hover:scale-110 transform"
+      >
+        {item.text}
+        {item.dropdownItems && (
+          <svg class="w-4 h-4 ml-1 transform group-hover:rotate-180 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+          </svg>
+        )}
+      </a>
+      {item.dropdownItems && (
+        <div class="absolute left-0 mt-2 w-72 bg-gray-900/95 backdrop-blur-md rounded-xl shadow-xl py-3 hidden group-hover:block transform opacity-0 group-hover:opacity-100 transition-all duration-200 z-50 border border-white/10">
+          {item.dropdownItems.map(dropdownItem => (
+            <a
+              href={dropdownItem.href}
+              class="block px-6 py-2.5 text-sm text-[#14b8a6] hover:bg-white/5 hover:text-[#14b8a6] hover:scale-105 transform transition-all duration-200 first:rounded-t-lg last:rounded-b-lg"
+            >
+              {dropdownItem.text}
+            </a>
+          ))}
+        </div>
+      )}
+    </div>
+  ))}
+</nav>
+
+<button 
+  id="toggle-menu"
+  class="md:hidden p-2 text-[#14b8a6] hover:text-[#14b8a6] transition-colors"
+  aria-label="Toggle menu"
+>
+  <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+  </svg>
+</button>

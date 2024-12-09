@@ -1,0 +1,46 @@
+---
+interface Props {
+  title: string;
+  description: string;
+  image: string;
+  imageAlt: string;
+}
+
+const { title, description, image, imageAlt } = Astro.props;
+---
+
+<section class="py-20">
+  <div class="container mx-auto px-4">
+    <div class="max-w-4xl mx-auto bg-white/5 backdrop-blur-sm rounded-2xl border border-white/10 p-12">
+      <div class="grid md:grid-cols-2 gap-8 items-center">
+        <div>
+          <h2 class="text-3xl font-bold text-white mb-4">{title}</h2>
+          <p class="text-white-600 mb-8">
+            {description}
+          </p>
+          <div class="flex gap-4">
+            <a 
+              href="/demo" 
+              class="px-6 py-3 bg-white text-gray-900 rounded-lg font-medium hover:bg-white/90 transition-colors"
+            >
+              Request Demo
+            </a>
+            <a 
+              href="/contact" 
+              class="px-6 py-3 bg-gradient-to-r from-[#0d9488] to-[#3b82f6] text-white rounded-lg font-medium hover:from-[#0b847a] hover:to-[#2563eb] transition-colors"
+            >
+              Contact Us
+            </a>
+          </div>
+        </div>
+        <div class="relative aspect-square rounded-xl overflow-hidden">
+          <img 
+            src={image} 
+            alt={imageAlt}
+            class="w-full h-full object-cover"
+          />
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

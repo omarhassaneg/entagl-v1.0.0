@@ -1,0 +1,120 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import Hero from '../../../components/industries/shared/Hero.astro';
+import Features from '../../../components/industries/shared/Features.astro';
+import Timeline from '../../../components/industries/shared/Timeline.astro';
+import Benefits from '../../../components/industries/shared/Benefits.astro';
+import CTA from '../../../components/industries/shared/CTA.astro';
+
+const features = {
+  title: "Transform Your Restaurant Operations",
+  subtitle: "Efficiency",
+  description: "Streamline your restaurant operations with AI Agents that handle reservations, customer inquiries, and order management. Enhance dining experience and boost customer satisfaction.",
+  features: [
+    {
+      title: 'Smart Reservation Management',
+      description: 'Let AI agents handle bookings, modifications, and special requests automatically.',
+      image: 'https://images.unsplash.com/photo-1517248135467-4c7edcad34c4'
+    },
+    {
+      title: '24/7 Customer Support',
+      description: 'Answer menu questions, dietary concerns, and business hours inquiries instantly.',
+      image: 'https://images.unsplash.com/photo-1552566626-52f8b828add9'
+    },
+    {
+      title: 'Order & Delivery Coordination',
+      description: 'Manage takeout orders and delivery status updates seamlessly.',
+      image: 'https://images.unsplash.com/photo-1513104890138-7c749659a591'
+    }
+  ]
+};
+
+const timeline = {
+  title: "Seamless Dining Experience",
+  subtitle: "How It Works",
+  description: "See how our AI Agents handle customer interactions and reservation management efficiently",
+  steps: [
+    {
+      step: 1,
+      title: 'Initial Contact',
+      message: 'Customer: "Do you have a table for 4 available this Saturday evening?"',
+      response: "AI: I'll check our availability for Saturday evening right away.",
+      icon: 'M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z'
+    },
+    {
+      step: 2,
+      title: 'Reservation Details',
+      message: 'AI: "We have tables at 6:30 PM or 8:00 PM. Do either of these times work for you?"',
+      response: 'Customer: "6:30 PM would be perfect."',
+      icon: 'M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z'
+    },
+    {
+      step: 3,
+      title: 'Special Requests',
+      message: 'AI: "Would you like to know about our specials or have any dietary requirements?"',
+      response: 'Customer: "Yes, we have one vegetarian guest."',
+      icon: 'M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z'
+    },
+    {
+      step: 4,
+      title: 'Confirmation',
+      message: 'AI: "Perfect! Your table for 4 is confirmed for Saturday at 6:30 PM. I\'ve noted the vegetarian requirement."',
+      response: null,
+      icon: 'M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z'
+    },
+    {
+      step: 5,
+      title: 'Follow-up',
+      message: 'AI: "How was your dining experience? Would you like to join our loyalty program?"',
+      response: 'Customer: "The food was amazing! Yes, please tell me about the program."',
+      icon: 'M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z'
+    }
+  ]
+};
+
+const benefits = {
+  title: "Enhance Your Restaurant Business with Smart AI Solutions",
+  benefits: [
+    {
+      title: 'Streamline Reservation Management',
+      description: 'Our AI Agents handle bookings and special requests automatically, reducing no-shows and maximizing capacity.',
+      image: 'https://images.unsplash.com/photo-1517248135467-4c7edcad34c4',
+      cta: 'Learn More'
+    },
+    {
+      title: 'Improve Customer Service',
+      description: 'Provide instant responses to inquiries about menu, hours, and special events.',
+      image: 'https://images.unsplash.com/photo-1552566626-52f8b828add9',
+      cta: 'Discover'
+    },
+    {
+      title: 'Boost Online Orders',
+      description: 'Manage takeout and delivery orders efficiently with automated coordination.',
+      image: 'https://images.unsplash.com/photo-1513104890138-7c749659a591',
+      cta: 'Connect'
+    }
+  ]
+};
+
+const cta = {
+  title: "Elevate Your Restaurant Experience",
+  description: "Transform your restaurant operations with our customized AI Agents. Streamline reservations, enhance customer service, and boost efficiency effortlessly.",
+  image: "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4",
+  imageAlt: "Restaurant Experience"
+};
+---
+
+<Layout 
+  title="Restaurant AI Solutions"
+  description="Transform your restaurant operations with AI-powered automation and customer engagement solutions."
+>
+  <Hero
+    title="Revolutionize Your Restaurant with"
+    description="Transform your restaurant operations with AI. Automate reservations, enhance customer service, and streamline order management with intelligent assistance."
+  />
+  
+  <Features {...features} />
+  <Timeline {...timeline} />
+  <Benefits {...benefits} />
+  <CTA {...cta} />
+</Layout>

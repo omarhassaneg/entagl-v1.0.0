@@ -1,0 +1,120 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import Hero from '../../../components/industries/shared/Hero.astro';
+import Features from '../../../components/industries/shared/Features.astro';
+import Timeline from '../../../components/industries/shared/Timeline.astro';
+import Benefits from '../../../components/industries/shared/Benefits.astro';
+import CTA from '../../../components/industries/shared/CTA.astro';
+
+const features = {
+  title: "Streamline Your Event Planning Business",
+  subtitle: "Efficiency",
+  description: "Transform your event planning business with AI Agents that handle client inquiries, vendor coordination, and event scheduling. Enhance client experience and boost productivity.",
+  features: [
+    {
+      title: 'Automated Event Scheduling',
+      description: 'Let AI agents handle consultation bookings, vendor meetings, and timeline coordination.',
+      image: 'https://images.unsplash.com/photo-1511795409834-ef04bbd61622'
+    },
+    {
+      title: '24/7 Client Support',
+      description: 'Provide instant responses to event inquiries and planning questions.',
+      image: 'https://images.unsplash.com/photo-1505236858219-8359eb29e329'
+    },
+    {
+      title: 'Vendor Management',
+      description: 'Coordinate with vendors and track availability automatically.',
+      image: 'https://images.unsplash.com/photo-1464366400600-7168b8af9bc3'
+    }
+  ]
+};
+
+const timeline = {
+  title: "Seamless Event Planning Journey",
+  subtitle: "How It Works",
+  description: "See how our AI Agents handle client interactions and event planning inquiries efficiently",
+  steps: [
+    {
+      step: 1,
+      title: 'Initial Inquiry',
+      message: 'Client: "I\'m planning a wedding for next summer. Do you have availability?"',
+      response: "AI: I'd be happy to check our availability and discuss your wedding plans.",
+      icon: 'M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z'
+    },
+    {
+      step: 2,
+      title: 'Event Details',
+      message: 'AI: "Could you share your preferred date and estimated guest count?"',
+      response: 'Client: "Looking at July 15th with around 150 guests."',
+      icon: 'M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z'
+    },
+    {
+      step: 3,
+      title: 'Consultation Booking',
+      message: 'AI: "Great! We have availability. Would you like to schedule a consultation this week?"',
+      response: 'Client: "Yes, that would be perfect."',
+      icon: 'M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z'
+    },
+    {
+      step: 4,
+      title: 'Vendor Coordination',
+      message: 'AI: "I\'ll start checking availability with our preferred vendors for your date."',
+      response: null,
+      icon: 'M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z'
+    },
+    {
+      step: 5,
+      title: 'Follow-up',
+      message: 'AI: "I\'ve compiled a list of available vendors and venue options for your date."',
+      response: 'Client: "That\'s fantastic! Can\'t wait to review them."',
+      icon: 'M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z'
+    }
+  ]
+};
+
+const benefits = {
+  title: "Transform Your Event Planning Business with Smart AI Solutions",
+  benefits: [
+    {
+      title: 'Streamline Client Communication',
+      description: 'Our AI Agents handle inquiries and follow-ups automatically, ensuring no detail is missed.',
+      image: 'https://images.unsplash.com/photo-1511795409834-ef04bbd61622',
+      cta: 'Learn More'
+    },
+    {
+      title: 'Efficient Vendor Management',
+      description: 'Coordinate with vendors and track availability seamlessly.',
+      image: 'https://images.unsplash.com/photo-1505236858219-8359eb29e329',
+      cta: 'Discover'
+    },
+    {
+      title: 'Enhanced Event Experience',
+      description: 'Provide personalized attention and quick responses to every client.',
+      image: 'https://images.unsplash.com/photo-1464366400600-7168b8af9bc3',
+      cta: 'Connect'
+    }
+  ]
+};
+
+const cta = {
+  title: "Elevate Your Event Planning Business",
+  description: "Transform your event planning business with our customized AI Agents. Streamline client management, enhance coordination, and create unforgettable events effortlessly.",
+  image: "https://images.unsplash.com/photo-1511795409834-ef04bbd61622",
+  imageAlt: "Event Planning Experience"
+};
+---
+
+<Layout 
+  title="Event Planning AI Solutions"
+  description="Transform your event planning business with AI-powered automation and client engagement solutions."
+>
+  <Hero
+    title="Revolutionize Your Event Planning with"
+    description="Transform your event planning business with AI. Automate client communications, coordinate with vendors, and create exceptional events with ease."
+  />
+  
+  <Features {...features} />
+  <Timeline {...timeline} />
+  <Benefits {...benefits} />
+  <CTA {...cta} />
+</Layout>

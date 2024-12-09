@@ -1,0 +1,97 @@
+---
+const clients = [
+  {
+    name: 'Microsoft',
+    logo: 'https://upload.wikimedia.org/wikipedia/commons/9/96/Microsoft_logo_%282012%29.svg',
+    url: 'https://microsoft.com'
+  },
+  {
+    name: 'Google',
+    logo: 'https://upload.wikimedia.org/wikipedia/commons/2/2f/Google_2015_logo.svg',
+    url: 'https://google.com'
+  },
+  {
+    name: 'Amazon',
+    logo: 'https://upload.wikimedia.org/wikipedia/commons/a/a9/Amazon_logo.svg',
+    url: 'https://amazon.com'
+  },
+  {
+    name: 'Meta',
+    logo: 'https://upload.wikimedia.org/wikipedia/commons/7/7b/Meta_Platforms_Inc._logo.svg',
+    url: 'https://meta.com'
+  },
+  {
+    name: 'Apple',
+    logo: 'https://upload.wikimedia.org/wikipedia/commons/f/fa/Apple_logo_black.svg',
+    url: 'https://apple.com'
+  },
+  {
+    name: 'IBM',
+    logo: 'https://upload.wikimedia.org/wikipedia/commons/5/51/IBM_logo.svg',
+    url: 'https://ibm.com'
+  },
+  {
+    name: 'Oracle',
+    logo: 'https://upload.wikimedia.org/wikipedia/commons/5/50/Oracle_logo.svg',
+    url: 'https://oracle.com'
+  },
+  {
+    name: 'Intel',
+    logo: 'https://upload.wikimedia.org/wikipedia/commons/7/7d/Intel_logo_%282006-2020%29.svg',
+    url: 'https://intel.com'
+  }
+];
+---
+
+<section class="py-20 overflow-hidden">
+  <div class="container mx-auto px-4">
+    <div class="text-center mb-12" data-aos="fade-up">
+      <span class="text-sm font-semibold text-primary-600 uppercase tracking-wider">Our Clients</span>
+      <h2 class="text-3xl font-bold mt-2 mb-4">Trusted by Industry Leaders</h2>
+      <p class="text-white-600 max-w-2xl mx-auto">
+        Join the ranks of global enterprises that trust our AI solutions.
+      </p>
+    </div>
+
+    <div class="relative">
+      <div class="client-logos-track flex items-center gap-16">
+        {[...clients, ...clients].map((client, index) => (
+          <a 
+            key={`${client.name}-${index}`}
+            href={client.url}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="flex-none w-32 h-12 flex items-center justify-center opacity-60 hover:opacity-100 transition-opacity duration-300"
+          >
+            <img 
+              src={client.logo} 
+              alt={`${client.name} logo`}
+              class="max-w-full max-h-full object-contain filter brightness-0 invert"
+              loading="lazy"
+            />
+          </a>
+        ))}
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .client-logos-track {
+    animation: scroll 30s linear infinite;
+    width: max-content;
+  }
+
+  @keyframes scroll {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(-50%);
+    }
+  }
+
+  .client-logos-track:hover {
+    animation-play-state: paused;
+  }
+</style>

@@ -1,0 +1,137 @@
+---
+const businessPages = [
+  { href: '/industries/car-dealerships', text: 'Car Dealerships' },
+  { href: '/industries/beauty-salons', text: 'Beauty Salons' },
+  { href: '/industries/gym-studios', text: 'Gym Studios & Fitness' },
+  { href: '/industries/legal-accounting', text: 'Lawyers & Accountants' },
+  { href: '/industries/event-planners', text: 'Event Planners' },
+  { href: '/industries/healthcare', text: 'Healthcare Practices' },
+  { href: '/industries/ecommerce', text: 'E-commerce' },
+  { href: '/industries/restaurants', text: 'Restaurants' },
+  { href: '/industries/influencers', text: 'Influencers and Coaches' }
+];
+
+const useCases = [
+  { href: '/use-cases/lead-qualification', text: 'Lead Qualification' }
+];
+
+const navItems = [
+  { 
+    href: '/industries', 
+    text: 'Your Business',
+    dropdownItems: businessPages
+  },
+  { 
+    href: '/use-cases', 
+    text: 'Use Cases',
+    dropdownItems: useCases
+  },
+  { href: '/case-studies', text: 'Case Studies' },
+  { href: '/blog', text: 'Blog' }
+];
+---
+
+<div 
+  id="mobile-menu" 
+  class="fixed inset-0 bg-gray-900/95 backdrop-blur-sm z-50 transform translate-x-full transition-transform duration-300"
+>
+  <div class="h-full overflow-y-auto">
+    <div class="flex justify-end p-4">
+      <button 
+        id="close-menu"
+        class="p-2 text-white hover:text-primary-600 transition-colors"
+        aria-label="Close menu"
+      >
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+        </svg>
+      </button>
+    </div>
+
+    <nav class="px-4 py-2">
+      {navItems.map(item => (
+        <div class="mb-4">
+          <div class="flex items-center justify-between">
+            <a 
+              href={item.href}
+              class="text-lg font-medium text-white hover:text-primary-600 transition-colors"
+            >
+              {item.text}
+            </a>
+            {item.dropdownItems && (
+              <button 
+                class="mobile-dropdown-toggle p-2 text-white hover:text-primary-600 transition-colors"
+                aria-label="Toggle dropdown"
+              >
+                <svg class="w-5 h-5 transform transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                </svg>
+              </button>
+            )}
+          </div>
+          
+          {item.dropdownItems && (
+            <div class="mobile-dropdown hidden pl-4 mt-2 space-y-2">
+              {item.dropdownItems.map(dropdownItem => (
+                <a
+                  href={dropdownItem.href}
+                  class="block py-2 text-white-600 hover:text-primary-600 transition-colors"
+                >
+                  {dropdownItem.text}
+                </a>
+              ))}
+            </div>
+          )}
+        </div>
+      ))}
+    </nav>
+
+    <div class="px-4 py-6">
+      <a 
+        href="/demo" 
+        class="block w-full px-6 py-3 text-center bg-gradient-to-r from-[#0d9488] to-[#3b82f6] text-white rounded-lg font-medium hover:from-[#0b847a] hover:to-[#2563eb] transition-all duration-200"
+      >
+        Get Demo
+      </a>
+    </div>
+  </div>
+</div>
+
+<script>
+  const mobileMenu = document.getElementById('mobile-menu');
+  const toggleMenu = document.getElementById('toggle-menu');
+  const closeMenu = document.getElementById('close-menu');
+  const dropdownToggles = document.querySelectorAll('.mobile-dropdown-toggle');
+
+  function openMenu() {
+    mobileMenu?.classList.remove('translate-x-full');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeMenuHandler() {
+    mobileMenu?.classList.add('translate-x-full');
+    document.body.style.overflow = '';
+  }
+
+  toggleMenu?.addEventListener('click', openMenu);
+  closeMenu?.addEventListener('click', closeMenuHandler);
+
+  dropdownToggles.forEach(toggle => {
+    toggle.addEventListener('click', (e) => {
+      const button = e.currentTarget as HTMLButtonElement;
+      const dropdown = button.parentElement?.nextElementSibling;
+      const icon = button.querySelector('svg');
+      
+      if (dropdown && icon) {
+        dropdown.classList.toggle('hidden');
+        icon.style.transform = dropdown.classList.contains('hidden') ? '' : 'rotate(180deg)';
+      }
+    });
+  });
+</script>
+
+<style>
+  .text-white-600 {
+    color: rgba(255, 255, 255, 0.6);
+  }
+</style>

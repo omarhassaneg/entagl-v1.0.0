@@ -1,0 +1,103 @@
+---
+const faqs = [
+  {
+    question: 'What types of tasks can AI Agents handle?',
+    answer: 'AI Agents can manage tasks like customer support, sales, lead qualification, appointment scheduling, lead generation, feedback collection, and more. They help streamline workflows, save time, and improve customer engagement.'
+  },
+  {
+    question: 'How do AI Agents interact with my customers?',
+    answer: 'AI Agents communicate through various channels, including Instagram DMs, Telegram, WhatsApp, Facebook Messenger, email, website chat widgets, and SMS. They ensure seamless and personalized interactions across all your customer touchpoints.'
+  },
+  {
+    question: 'Can AI Agents adapt to my industry’s specific needs?',
+    answer: 'Absolutely! AI Agents are fully customizable to meet the specific needs of your business. Whether you’re in retail, healthcare, finance, or any other industry, we ensure the solution aligns with your operations and objectives.'
+  },
+  {
+    question: 'What industries can benefit from AI Agents?',
+    answer: 'AI Agents are versatile and can benefit various industries, including retail, healthcare, education, and finance. Any business looking to enhance operational efficiency, streamline customer interactions, and scale effortlessly can leverage their capabilities.'
+  },
+  {
+    question: 'What does the implementation process look like?',
+    answer: 'Once you decide our solution fits your needs, we schedule a couple of discovery sessions online to understand your business requirements. We then create a custom system design tailored to your needs. Next, we develop a working version, iterate with you 2-3 times to adjust and improve it, test it internally and externally, and finally deploy it to production. After deployment, we meet on a quarterly basis to assess if your needs have changed and make updates accordingly.'
+  },
+  {
+    question: 'What is the typical timeline from starting to having a solution ready?',
+    answer: 'The timeline depends on the complexity of the solution. Development, testing, and production deployment can take anywhere from 2 weeks to 3 months. This does not include the discovery and iteration phases, which are crucial for tailoring the solution to your needs.'
+  },
+  {
+    question: 'How does your pricing work?',
+    answer: 'We charge a one-time setup fee that typically ranges from $3,000 USD to $100,000 USD, depending on the complexity and scale of the custom solution. Additionally, there’s a monthly maintenance fee ranging from $200 to $6,000 USD, which also depends on the solution and scale.'
+  },
+  {
+    question: 'Why do you charge a maintenance fee?',
+    answer: 'The maintenance fee is for continuously improving the solution, keeping it running smoothly, fixing any bugs, and ensuring it adapts to changing technology. As technology evolves, we want to ensure your solution stays up to date with the latest advancements and performs optimally.'
+  },
+  {
+    question: 'Does having multiple locations affect pricing?',
+    answer: 'No, you only pay a single setup fee as long as the solution remains the same across locations. However, there is a monthly maintenance fee per location to ensure ongoing support and updates.'
+  },
+  {
+    question: 'Does a demo cost money?',
+    answer: 'No, providing a demo doesn’t cost you anything. It’s completely free.'
+  }
+];
+
+---
+
+<section class="py-20">
+  <div class="container mx-auto px-4">
+    <div class="text-center mb-16" data-aos="fade-up">
+      <span class="text-sm font-semibold text-primary-600 uppercase tracking-wider">FAQs</span>
+      <h2 class="text-3xl font-bold mt-2 mb-4">Frequently Asked Questions</h2>
+      <p class="text-white-600 max-w-2xl mx-auto">
+        Find answers to your questions about AI Agents and how they can benefit your business.
+      </p>
+    </div>
+
+    <div class="grid md:grid-cols-2 gap-8">
+      {faqs.map((faq, index) => (
+        <div 
+          class="group border border-gray-700 rounded-lg p-6 hover:bg-gray-800 transition-all duration-300" 
+          data-aos="fade-up" 
+          data-aos-delay={index * 100}
+        >
+          <h3 class="text-xl font-semibold mb-4 group-hover:text-primary-600 transition-colors">
+            {faq.question}
+          </h3>
+          <p class="text-white-600">
+            {faq.answer}
+          </p>
+        </div>
+      ))}
+    </div>
+
+    <div class="text-center mt-16">
+      <h3 class="text-xl font-semibold mb-2">Still have questions?</h3>
+      <p class="text-white-600 mb-4">We're here to help you.</p>
+      <a 
+        href="/contact" 
+        class="inline-block px-6 py-3 border-2 border-primary-600 text-primary-600 rounded-lg hover:bg-primary-600 hover:text-white transition-all duration-300"
+      >
+        Contact Us
+      </a>
+    </div>
+  </div>
+</section>
+
+<style>
+  .text-white-600 {
+    color: rgba(255, 255, 255, 0.6);
+  }
+
+  .text-primary-600 {
+    color: var(--primary, #0d9488);
+  }
+
+  .hover\:text-primary-600:hover {
+    color: var(--primary, #0d9488);
+  }
+
+  .hover\:bg-primary-600:hover {
+    background-color: var(--primary, #0d9488);
+  }
+</style>

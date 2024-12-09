@@ -1,0 +1,24 @@
+---
+const categories = [
+  { name: 'All', count: 42 },
+  { name: 'AI Technology', count: 15 },
+  { name: 'Business', count: 12 },
+  { name: 'Case Studies', count: 8 },
+  { name: 'Industry News', count: 7 }
+];
+---
+
+<div class="flex flex-wrap gap-3 justify-center mt-2" data-aos="fade-up">
+  {categories.map((category, index) => (
+    <button 
+      class={`px-6 py-2 rounded-full text-sm font-medium transition-all duration-200 ${
+        index === 0 
+          ? 'bg-gradient-to-r from-[#0d9488] to-[#3b82f6] text-white' 
+          : 'bg-white/10 text-white-600 hover:bg-white/20'
+      }`}
+    >
+      {category.name}
+      <span class="ml-2 text-xs opacity-60">({category.count})</span>
+    </button>
+  ))}
+</div>

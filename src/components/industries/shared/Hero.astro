@@ -1,0 +1,41 @@
+---
+interface Props {
+  title: string;
+  description: string;
+}
+
+const { title, description } = Astro.props;
+---
+
+<section class="pt-32 pb-20">
+  <div class="container mx-auto px-4">
+    <div class="max-w-4xl mx-auto text-center">
+      <h1 class="text-4xl lg:text-6xl font-bold text-white mb-6">
+        {title} <span class="text-gradient">AI Agents</span>
+      </h1>
+      <p class="text-xl text-white-600 mb-8">
+        {description}
+      </p>
+      <div class="flex justify-center gap-4">
+        <a 
+          href="/demo" 
+          class="px-8 py-4 bg-gradient-to-r from-[#0d9488] to-[#3b82f6] text-white rounded-lg font-medium hover:from-[#0b847a] hover:to-[#2563eb] transition-all duration-200 transform hover:-translate-y-1"
+        >
+          Get Demo
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .text-white-600 {
+    color: rgba(255, 255, 255, 0.6);
+  }
+
+  .text-gradient {
+    background: linear-gradient(to right, var(--primary), #3b82f6);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+</style>

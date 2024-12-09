@@ -1,0 +1,104 @@
+---
+const industries = [
+  {
+    title: 'Fitness',
+    description: 'AI solutions for gym management and member engagement',
+    color: 'from-[#0d9488] to-[#3b82f6]'
+  },
+  {
+    title: 'Restaurants',
+    description: 'Streamline operations and enhance customer service',
+    color: 'from-[#0db487] to-[#4a90e2]'
+  },
+  {
+    title: 'Salons',
+    description: 'Automated booking and client management',
+    color: 'from-[#0da695] to-[#5a8df4]'
+  },
+  {
+    title: 'Healthcare',
+    description: 'Patient care and practice management solutions',
+    color: 'from-[#0d8c9c] to-[#6a7ef6]'
+  },
+  {
+    title: 'Events',
+    description: 'Event planning and coordination automation',
+    color: 'from-[#0d7f9c] to-[#7a6ff6]'
+  },
+  {
+    title: 'Influencers',
+    description: 'Content management and audience engagement',
+    color: 'from-[#0d72a4] to-[#8a60f6]'
+  },
+  {
+    title: 'Dealerships',
+    description: 'Vehicle inventory and customer relationship management',
+    color: 'from-[#0d65b4] to-[#9a50f6]'
+  },
+  {
+    title: 'E-commerce',
+    description: 'Online store automation and customer support',
+    color: 'from-[#0d58c4] to-[#aa40f6]'
+  },
+  {
+    title: 'Lawyers',
+    description: 'Case management and client communication',
+    color: 'from-[#0d4bd4] to-[#ba30f6]'
+  },
+  {
+    title: 'Accountants',
+    description: 'Financial management and client services',
+    color: 'from-[#0d3ee4] to-[#ca20f6]'
+  },
+  {
+    title: 'Consultants',
+    description: 'Business advisory and client engagement',
+    color: 'from-[#0d31f4] to-[#da10f6]'
+  }
+];
+
+---
+
+<section class="py-20">
+  <div class="container mx-auto px-4">
+    <h2 class="text-3xl font-bold text-center text-white mb-12">
+      Explore Tailored AI Solutions for Your<br />
+      Unique Business Needs
+    </h2>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+      {industries.map((industry, index) => (
+        <div 
+          class="group cursor-pointer"
+          data-aos="fade-up"
+          data-aos-delay={index * 100}
+        >
+          <div class={`relative overflow-hidden rounded-2xl p-6 h-full bg-gradient-to-br ${industry.color} hover:scale-[1.02] transform transition-all duration-300`}>
+            <div class="relative z-10">
+              <h3 class="text-xl font-semibold text-white mb-2">{industry.title}</h3>
+              <p class="text-white/90 text-sm">{industry.description}</p>
+              <div class="mt-4 flex items-center text-white/90 text-sm font-medium group-hover:translate-x-2 transition-transform duration-300">
+                Learn more
+                <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                </svg>
+              </div>
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .grid {
+    grid-auto-rows: 1fr;
+  }
+
+  @media (min-width: 640px) {
+    .grid > div:nth-child(3n) {
+      grid-row: span 2;
+    }
+  }
+</style>

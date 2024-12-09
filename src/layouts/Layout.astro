@@ -1,0 +1,219 @@
+---
+import Header from '../components/common/Header.astro';
+import Footer from '../components/common/Footer.astro';
+import { generateSEO, type SEOProps } from '../utils/seo';
+
+interface Props extends SEOProps {}
+
+const seo = generateSEO(Astro.props);
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="description" content={seo.description} />
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="/logo.svg" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/logo-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/logo-16x16.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    
+    <!-- Open Graph / Social Media -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={seo.title} />
+    <meta property="og:description" content={seo.description} />
+    <meta property="og:image" content={seo.image} />
+    
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={seo.title} />
+    <meta name="twitter:description" content={seo.description} />
+    <meta name="twitter:image" content={seo.image} />
+    
+    {seo.noIndex && <meta name="robots" content="noindex" />}
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <meta name="generator" content={Astro.generator} />
+    <title>{seo.title}</title>
+  </head>
+  <body class="min-h-screen flex flex-col bg-dark-900 text-white">
+    <div class="fixed inset-0 z-0 overflow-hidden">
+      <!-- Network Grid Pattern -->
+      <div class="absolute inset-0 bg-network-grid opacity-20"></div>
+      
+      <!-- Geometric Blobs -->
+      <div class="absolute inset-0">
+        <div class="geometric-blob blob-1"></div>
+        <div class="geometric-blob blob-2"></div>
+        <div class="geometric-blob blob-3"></div>
+      </div>
+    </div>
+    <Header />
+    <main class="flex-grow relative z-10">
+      <slot />
+    </main>
+    <Footer />
+    <script>
+      import AOS from 'aos';
+      import { gsap } from 'gsap';
+      import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+      gsap.registerPlugin(ScrollTrigger);
+
+      AOS.init({
+        duration: 800,
+        once: true,
+        offset: 100,
+      });
+
+      // Animate blobs
+      const blobs = document.querySelectorAll('.geometric-blob');
+      
+      blobs.forEach((blob, index) => {
+        // Create a unique timeline for each blob
+        const tl = gsap.timeline({
+          repeat: -1,
+          yoyo: true,
+          defaults: { duration: 20, ease: 'sine.inOut' }
+        });
+
+        // Random starting position
+        gsap.set(blob, {
+          xPercent: gsap.utils.random(-20, 20),
+          yPercent: gsap.utils.random(-20, 20),
+          rotation: gsap.utils.random(-30, 30)
+        });
+
+        // Animate position and rotation
+        tl.to(blob, {
+          xPercent: gsap.utils.random(-25, 25),
+          yPercent: gsap.utils.random(-25, 25),
+          rotation: gsap.utils.random(-45, 45),
+          scrollTrigger: {
+            trigger: 'body',
+            start: 'top top',
+            end: 'bottom bottom',
+            scrub: 3,
+          }
+        });
+
+        // Add subtle scale animation
+        gsap.to(blob, {
+          scale: 1.1,
+          duration: 8,
+          repeat: -1,
+          yoyo: true,
+          ease: 'sine.inOut',
+          delay: index * 2
+        });
+      });
+    </script>
+  </body>
+</html>
+
+<style is:global>
+  :root {
+    --primary: #0d9488;
+    --primary-light: rgba(13, 148, 136, 0.2);
+  }
+
+  html {
+    font-family: 'Inter', system-ui, sans-serif;
+    scroll-behavior: smooth;
+  }
+  
+  /* Network Grid Pattern */
+  .bg-network-grid {
+    background-image: 
+      radial-gradient(var(--primary-light) 1px, transparent 1px),
+      radial-gradient(var(--primary-light) 1px, transparent 1px);
+    background-size: 50px 50px;
+    background-position: 0 0, 25px 25px;
+  }
+
+  /* Geometric Blobs */
+  .geometric-blob {
+    position: fixed;
+    width: 600px;
+    height: 600px;
+    mix-blend-mode: screen;
+    pointer-events: none;
+    will-change: transform;
+    clip-path: polygon(
+      50% 0%, 
+      80% 10%, 
+      100% 35%, 
+      100% 70%, 
+      80% 90%, 
+      50% 100%, 
+      20% 90%, 
+      0% 70%, 
+      0% 35%, 
+      20% 10%
+    );
+  }
+
+  .blob-1 {
+    top: -20%;
+    left: -10%;
+    background: linear-gradient(135deg, var(--primary), transparent 25%);
+    border: 2px solid rgba(13, 148, 136, 0.3);
+    filter: blur(15px);
+  }
+
+  .blob-2 {
+    top: 30%;
+    right: -20%;
+    background: linear-gradient(135deg, #3b82f6, transparent 25%);
+    border: 2px solid rgba(59, 130, 246, 0.3);
+    filter: blur(15px);
+    transform: rotate(45deg);
+  }
+
+  .blob-3 {
+    bottom: -10%;
+    left: 20%;
+    background: linear-gradient(135deg, #8b5cf6, transparent 25%);
+    border: 2px solid rgba(139, 92, 246, 0.3);
+    filter: blur(15px);
+    transform: rotate(-45deg);
+  }
+
+  /* Custom scrollbar */
+  ::-webkit-scrollbar {
+    width: 10px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: #1f2937;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: var(--primary);
+    border-radius: 5px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: #0b847a;
+  }
+
+  /* Smooth transitions */
+  .transition-all {
+    transition-property: all;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    transition-duration: 300ms;
+  }
+
+  /* Text gradient */
+  .text-gradient {
+    background: linear-gradient(to right, var(--primary), #3b82f6);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+</style>

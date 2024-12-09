@@ -1,0 +1,106 @@
+---
+const features = [
+  {
+    title: '24/7 Customer Support for Your Business',
+    description: 'Provide multilingual support around the clock.',
+    image: 'https://images.unsplash.com/photo-1549923746-c502d488b3ea'
+  },
+  {
+    title: 'Sales Automation to Boost Your Revenue',
+    description: 'Enhance your sales process with personalized recommendations.',
+    image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f'
+  },
+  {
+    title: 'Lead Qualification Made Easy',
+    description: 'Capture and qualify leads seamlessly with CRM integration.',
+    image: 'https://images.unsplash.com/photo-1552664730-d307ca884978'
+  }
+];
+
+const empowerFeatures = [
+  {
+    title: 'Connect with Customers Across Multiple Channels',
+    description: 'Engage your audience on Instagram, WhatsApp, your website and via email.',
+    image: 'https://images.unsplash.com/photo-1556761175-4b46a572b786'
+  },
+  {
+    title: 'Scale Your Customer Support Effortlessly',
+    description: 'Provide 24/7 support without the need for additional staff.',
+    image: 'https://images.unsplash.com/photo-1553877522-43269d4ea984'
+  },
+  {
+    title: 'Enhance Customer Experience with Instant Responses',
+    description: 'Deliver timely answers and solutions to your customers.',
+    image: 'https://images.unsplash.com/photo-1551434678-e076c223a692'
+  }
+];
+---
+
+<section class="py-20">
+  <div class="container mx-auto px-4">
+    <div class="text-center mb-16" data-aos="fade-up">
+      <span class="text-sm font-semibold text-primary-600 uppercase tracking-wider">Features</span>
+      <h2 class="text-3xl font-bold mt-2 mb-4">Transform Your Business with AI Solutions</h2>
+      <p class="text-white-600 max-w-2xl mx-auto">
+        Discover how our AI Agents can revolutionize your operations. From customer support to sales automation, we have the solutions you need.
+      </p>
+    </div>
+
+    <div class="grid md:grid-cols-3 gap-8 mb-16">
+      {features.map((feature, index) => (
+        <div class="text-center group" data-aos="fade-up" data-aos-delay={index * 100}>
+          <div class="relative overflow-hidden rounded-lg mb-4 aspect-video">
+            <img 
+              src={feature.image} 
+              alt={feature.title}
+              class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500"
+            />
+            <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
+          </div>
+          <h3 class="text-xl font-semibold mb-2 group-hover:text-primary-600 transition-colors">{feature.title}</h3>
+          <p class="text-white-600">{feature.description}</p>
+        </div>
+      ))}
+    </div>
+
+    <div class="flex justify-center gap-4 mb-20">
+      <a 
+        href="/blog" 
+        class="px-6 py-2 border-2 border-primary-600 text-primary-600 rounded-lg hover:bg-primary-600 hover:text-white transition-all duration-300"
+      >
+        Blog
+      </a>
+      <a 
+        href="/demo" 
+        class="px-6 py-2 border-2 border-primary-600 bg-primary-600 text-white rounded-lg hover:bg-primary-700 hover:border-primary-700 transition-all duration-300"
+      >
+        Get Demo →
+      </a>
+    </div>
+
+    <div class="text-center mb-16" data-aos="fade-up">
+      <span class="text-sm font-semibold text-primary-600 uppercase tracking-wider">Empower</span>
+      <h2 class="text-3xl font-bold mt-2 mb-4">Transform Your Business with AI Agents</h2>
+      <p class="text-white-600 max-w-2xl mx-auto">
+        AI Agents work around the clock to provide seamless customer interactions. They can engage with multiple customers simultaneously across various platforms, ensuring no inquiry goes unanswered.
+      </p>
+    </div>
+
+    <div class="grid md:grid-cols-3 gap-8">
+      {empowerFeatures.map((feature, index) => (
+        <div class="text-center group" data-aos="fade-up" data-aos-delay={index * 100}>
+          <div class="relative overflow-hidden rounded-lg mb-4 aspect-video">
+            <img 
+              src={feature.image} 
+              alt={feature.title}
+              class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500"
+            />
+            <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
+          </div>
+          <h3 class="text-xl font-semibold mb-2 group-hover:text-primary-600 transition-colors">{feature.title}</h3>
+          <p class="text-white-600">{feature.description}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

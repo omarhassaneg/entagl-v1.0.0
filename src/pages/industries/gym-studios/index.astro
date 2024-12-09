@@ -1,0 +1,120 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import Hero from '../../../components/industries/shared/Hero.astro';
+import Features from '../../../components/industries/shared/Features.astro';
+import Timeline from '../../../components/industries/shared/Timeline.astro';
+import Benefits from '../../../components/industries/shared/Benefits.astro';
+import CTA from '../../../components/industries/shared/CTA.astro';
+
+const features = {
+  title: "Transform Your Fitness Business",
+  subtitle: "Efficiency",
+  description: "Streamline your gym operations with AI Agents that handle member inquiries, class bookings, and personalized fitness guidance. Enhance member experience and boost retention.",
+  features: [
+    {
+      title: 'Automated Class Scheduling',
+      description: 'Let AI agents handle class bookings, waitlists, and schedule changes effortlessly.',
+      image: 'https://images.unsplash.com/photo-1534438327276-14e5300c3a48'
+    },
+    {
+      title: '24/7 Member Support',
+      description: 'Provide instant responses to membership inquiries and facility information.',
+      image: 'https://images.unsplash.com/photo-1574680096145-d05b474e2155'
+    },
+    {
+      title: 'Member Engagement',
+      description: 'Keep members motivated with automated check-ins and progress tracking.',
+      image: 'https://images.unsplash.com/photo-1576678927484-cc907957088c'
+    }
+  ]
+};
+
+const timeline = {
+  title: "Seamless Member Experience",
+  subtitle: "How It Works",
+  description: "See how our AI Agents handle member interactions and fitness inquiries efficiently",
+  steps: [
+    {
+      step: 1,
+      title: 'Initial Contact',
+      message: 'Member: "I\'d like to sign up for tomorrow\'s HIIT class. Are there spots available?"',
+      response: "AI: Let me check the class availability for you.",
+      icon: 'M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z'
+    },
+    {
+      step: 2,
+      title: 'Class Information',
+      message: 'AI: "Yes, there are 3 spots left in tomorrow\'s 6 PM HIIT class. Would you like me to book one for you?"',
+      response: 'Member: "Yes, please book it for me."',
+      icon: 'M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z'
+    },
+    {
+      step: 3,
+      title: 'Booking Confirmation',
+      message: 'AI: "Great! I\'ve booked your spot. Would you like a reminder 1 hour before class?"',
+      response: 'Member: "Yes, that would be helpful."',
+      icon: 'M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z'
+    },
+    {
+      step: 4,
+      title: 'Pre-Class Preparation',
+      message: 'AI: "Remember to bring water and a towel. Arrive 10 minutes early for warm-up."',
+      response: null,
+      icon: 'M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z'
+    },
+    {
+      step: 5,
+      title: 'Follow-up',
+      message: 'AI: "How was your HIIT class? Would you like to book your next session?"',
+      response: 'Member: "It was great! Yes, let\'s book for next week."',
+      icon: 'M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z'
+    }
+  ]
+};
+
+const benefits = {
+  title: "Elevate Your Fitness Business with Smart AI Solutions",
+  benefits: [
+    {
+      title: 'Boost Member Retention Through Better Engagement',
+      description: 'Our AI Agents keep members motivated with personalized check-ins and progress tracking.',
+      image: 'https://images.unsplash.com/photo-1534438327276-14e5300c3a48',
+      cta: 'Learn More'
+    },
+    {
+      title: 'Streamline Class Management',
+      description: 'Automate bookings, waitlists, and schedule changes effortlessly.',
+      image: 'https://images.unsplash.com/photo-1574680096145-d05b474e2155',
+      cta: 'Discover'
+    },
+    {
+      title: 'Enhance Member Experience',
+      description: 'Provide instant support and guidance 24/7.',
+      image: 'https://images.unsplash.com/photo-1576678927484-cc907957088c',
+      cta: 'Connect'
+    }
+  ]
+};
+
+const cta = {
+  title: "Power Your Fitness Success with AI",
+  description: "Elevate your gym operations with our customized AI Agents. Streamline member management, enhance engagement, and boost retention effortlessly.",
+  image: "https://images.unsplash.com/photo-1534438327276-14e5300c3a48",
+  imageAlt: "Gym Experience"
+};
+---
+
+<Layout 
+  title="Gym & Fitness AI Solutions"
+  description="Transform your gym and fitness studio operations with AI-powered automation and member engagement solutions."
+>
+  <Hero
+    title="Revolutionize Your Fitness Business with"
+    description="Transform your gym operations and member experience with AI. Automate class bookings, engage members 24/7, and boost retention with personalized interactions."
+  />
+  
+  <Features {...features} />
+  <Timeline {...timeline} />
+  <Benefits {...benefits} />
+  <CTA {...cta} />
+</Layout>

@@ -1,0 +1,32 @@
+---
+interface Props {
+  variant?: 'light' | 'dark';
+}
+
+const { variant = 'dark' } = Astro.props;
+---
+
+<a href="/" class="flex items-center space-x-2 group">
+  <div class="relative w-8 h-8">
+    <svg 
+      viewBox="0 0 32 32" 
+      fill="none" 
+      xmlns="http://www.w3.org/2000/svg"
+      class="w-full h-full transform group-hover:scale-110 transition-transform duration-200"
+    >
+      <path 
+        d="M16 2L2 9L16 16L30 9L16 2Z" 
+        class="fill-[#14b8a6]"
+      />
+      <path 
+        d="M2 23L16 30L30 23V9L16 16L2 9V23Z" 
+        class="fill-[#14b8a6] opacity-80"
+      />
+    </svg>
+  </div>
+  <span 
+    class="text-xl font-bold text-[#14b8a6] transform group-hover:scale-110 transition-all duration-200"
+  >
+    Entagl
+  </span>
+</a>

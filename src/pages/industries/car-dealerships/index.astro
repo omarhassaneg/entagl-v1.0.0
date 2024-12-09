@@ -1,0 +1,120 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import Hero from '../../../components/industries/shared/Hero.astro';
+import Features from '../../../components/industries/shared/Features.astro';
+import Timeline from '../../../components/industries/shared/Timeline.astro';
+import Benefits from '../../../components/industries/shared/Benefits.astro';
+import CTA from '../../../components/industries/shared/CTA.astro';
+
+const features = {
+  title: "Streamline Your Dealership Operations",
+  subtitle: "Efficiency",
+  description: "Transform your dealership with AI Agents that handle lead qualification, appointment scheduling, and customer support. Increase sales and customer satisfaction effortlessly.",
+  features: [
+    {
+      title: 'Automated Lead Qualification',
+      description: 'Let AI agents qualify leads and schedule test drives automatically.',
+      image: 'https://images.unsplash.com/photo-1560179707-f14e90ef3623'
+    },
+    {
+      title: '24/7 Customer Support',
+      description: 'Answer inquiries about vehicle specs and pricing any time.',
+      image: 'https://images.unsplash.com/photo-1549924231-f129b911e442'
+    },
+    {
+      title: 'Inventory Management',
+      description: 'Keep customers updated on new arrivals and price changes.',
+      image: 'https://images.unsplash.com/photo-1558519847-19fc2aa15a16'
+    }
+  ]
+};
+
+const timeline = {
+  title: "Seamless Customer Journey",
+  subtitle: "How It Works",
+  description: "See how our AI Agents handle customer interactions and vehicle inquiries efficiently",
+  steps: [
+    {
+      step: 1,
+      title: 'Initial Contact',
+      message: 'Customer: "I\'m interested in the 2024 Model X. Is it available for a test drive?"',
+      response: "AI: Let me check our inventory and available test drive slots for you.",
+      icon: 'M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z'
+    },
+    {
+      step: 2,
+      title: 'Vehicle Information',
+      message: 'AI: "Yes, we have the Model X in stock. Would you like to know about its features and pricing?"',
+      response: 'Customer: "Yes, please tell me about the pricing and available colors."',
+      icon: 'M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z'
+    },
+    {
+      step: 3,
+      title: 'Test Drive Scheduling',
+      message: 'AI: "We have availability this Saturday at 10 AM or 2 PM. Which time works better for you?"',
+      response: 'Customer: "Saturday at 10 AM works perfect."',
+      icon: 'M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z'
+    },
+    {
+      step: 4,
+      title: 'Documentation',
+      message: 'AI: "Great! Please bring your driver\'s license. I\'ll send you directions to our dealership."',
+      response: null,
+      icon: 'M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z'
+    },
+    {
+      step: 5,
+      title: 'Follow-up',
+      message: 'AI: "How was your test drive experience? Would you like to discuss financing options?"',
+      response: 'Customer: "The test drive was great! Yes, I\'d like to know about financing."',
+      icon: 'M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z'
+    }
+  ]
+};
+
+const benefits = {
+  title: "Transform Your Dealership with Intelligent AI Solutions",
+  benefits: [
+    {
+      title: 'Increase Sales Through Better Lead Management',
+      description: 'Our AI Agents qualify leads and schedule test drives automatically.',
+      image: 'https://images.unsplash.com/photo-1560179707-f14e90ef3623',
+      cta: 'Learn More'
+    },
+    {
+      title: 'Enhance Customer Experience with 24/7 Support',
+      description: 'Provide instant responses to vehicle inquiries any time.',
+      image: 'https://images.unsplash.com/photo-1549924231-f129b911e442',
+      cta: 'Discover'
+    },
+    {
+      title: 'Streamline Operations and Reduce Costs',
+      description: 'Automate routine tasks and focus on closing deals.',
+      image: 'https://images.unsplash.com/photo-1558519847-19fc2aa15a16',
+      cta: 'Connect'
+    }
+  ]
+};
+
+const cta = {
+  title: "Drive Your Success with AI",
+  description: "Elevate your dealership operations with our customized AI Agents. Streamline lead management, enhance customer engagement, and boost your sales effortlessly.",
+  image: "https://images.unsplash.com/photo-1560179707-f14e90ef3623",
+  imageAlt: "Dealership Experience"
+};
+---
+
+<Layout 
+  title="Car Dealership AI Solutions"
+  description="Transform your car dealership operations with AI-powered automation and customer engagement solutions."
+>
+  <Hero
+    title="Revolutionize Your Dealership with"
+    description="Transform your dealership operations and customer experience with AI. Automate lead qualification, schedule test drives, and engage customers 24/7."
+  />
+  
+  <Features {...features} />
+  <Timeline {...timeline} />
+  <Benefits {...benefits} />
+  <CTA {...cta} />
+</Layout>

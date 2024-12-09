@@ -1,0 +1,237 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Timeline from '../components/beauty-salons/Timeline.astro';
+
+const features = [
+  {
+    title: 'Streamlined Appointment Management Made Easy',
+    description: 'Never miss a booking with our automated system.',
+    image: 'https://images.unsplash.com/photo-1560066984-138dadb4c035'
+  },
+  {
+    title: 'Instant Responses to Customer Inquiries',
+    description: 'Quickly address pricing questions and upsell services.',
+    image: 'https://images.unsplash.com/photo-1595867818082-083862f3d630'
+  },
+  {
+    title: 'Engage Customers on Social Media Effortlessly',
+    description: 'Promote loyalty and connect with clients across platforms.',
+    image: 'https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9'
+  }
+];
+
+const benefits = [
+  {
+    title: 'Enhance Customer Experience and Maximize Bookings Effortlessly',
+    description: 'Our AI Agents streamline appointment management and elevate service offerings for salons.',
+    image: 'https://images.unsplash.com/photo-1600948836101-f9ffda59d250',
+    cta: 'Learn More'
+  },
+  {
+    title: 'Boost Revenue by Upselling Premium Services Like Bridal Packages',
+    description: 'With AI, easily respond to inquiries and promote your best services.',
+    image: 'https://images.unsplash.com/photo-1595867818082-083862f3d630',
+    cta: 'Discover'
+  },
+  {
+    title: 'Engage Customers on Social Media to Build Loyalty and Satisfaction',
+    description: 'Automate interactions across platforms like Instagram and WhatsApp to enhance customer relationships.',
+    image: 'https://images.unsplash.com/photo-1607619056574-7b8d3ee536b2',
+    cta: 'Connect'
+  }
+];
+
+const integrations = [
+  {
+    title: 'Seamless Integration Across Multiple Platforms',
+    description: 'Our AI Agents integrate effortlessly with platforms like Instagram, WhatsApp, Facebook, and Telegram.',
+    image: 'https://images.unsplash.com/photo-1596510914965-9ae08acae566'
+  },
+  {
+    title: 'Real-Time Engagement for Maximum Satisfaction',
+    description: 'Respond instantly to customer inquiries and feedback.',
+    image: 'https://images.unsplash.com/photo-1600948836101-f9ffda59d250'
+  },
+  {
+    title: '24/7 Availability to Boost Your Revenue',
+    description: 'Operate around the clock, enhancing customer loyalty and satisfaction.',
+    image: 'https://images.unsplash.com/photo-1562322140-8baeececf3df'
+  }
+];
+---
+
+<Layout 
+  title="Beauty Salon AI Solutions | Entagl"
+  description="Transform your beauty salon operations with AI-powered automation and customer engagement solutions."
+>
+  <!-- Hero Section -->
+  <section class="pt-32 pb-20">
+    <div class="container mx-auto px-4">
+      <div class="max-w-4xl mx-auto text-center">
+        <h1 class="text-4xl lg:text-6xl font-bold text-white mb-6">
+          Optimize Your Salon with <span class="text-gradient">AI Agents</span>
+        </h1>
+        <p class="text-xl text-white-600 mb-8">
+          Transform your beauty salon or barbershop operations and customer experience effortlessly. With AI Agents, you can automate scheduling, respond to inquiries, and engage customers like never before.
+        </p>
+        <div class="flex justify-center">
+          <button 
+            onclick="document.querySelector('#timeline').scrollIntoView({behavior: 'smooth'})"
+            class="px-8 py-4 bg-gradient-to-r from-[#0d9488] to-[#3b82f6] text-white rounded-lg font-medium hover:from-[#0b847a] hover:to-[#2563eb] transition-all duration-200 transform hover:-translate-y-1"
+          >
+            How It Works
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Features Grid -->
+  <section class="py-20">
+    <div class="container mx-auto px-4">
+      <div class="text-center mb-16">
+        <span class="text-sm font-semibold text-primary-600 uppercase tracking-wider">Efficiency</span>
+        <h2 class="text-3xl font-bold text-white mt-2 mb-4">Optimize Your Salon Operations with AI</h2>
+        <p class="text-white-600 max-w-2xl mx-auto">
+          Transform your salon experience with AI Agents that automate appointment scheduling, rescheduling, and cancellations. Enjoy seamless operations and happier clients, all day, every day.
+        </p>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-8">
+        {features.map((feature) => (
+          <div class="bg-white/5 backdrop-blur-sm rounded-xl overflow-hidden border border-white/10" data-aos="fade-up">
+            <div class="aspect-video relative overflow-hidden">
+              <img 
+                src={feature.image} 
+                alt={feature.title}
+                class="w-full h-full object-cover"
+              />
+            </div>
+            <div class="p-6">
+              <h3 class="text-xl font-semibold text-white mb-2">{feature.title}</h3>
+              <p class="text-white-600">{feature.description}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Timeline Component -->
+  <section id="timeline">
+    <Timeline />
+  </section>
+
+  <!-- Benefits Section -->
+  <section class="py-20 bg-white/5">
+    <div class="container mx-auto px-4">
+      <h2 class="text-3xl font-bold text-white text-center mb-16">
+        Transform Your Salon Operations with Intelligent AI Agents
+      </h2>
+
+      <div class="grid md:grid-cols-3 gap-8">
+        {benefits.map((benefit) => (
+          <div class="group" data-aos="fade-up">
+            <div class="aspect-video rounded-xl overflow-hidden mb-6">
+              <img 
+                src={benefit.image} 
+                alt={benefit.title}
+                class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-300"
+              />
+            </div>
+            <h3 class="text-xl font-semibold text-white mb-4">{benefit.title}</h3>
+            <p class="text-white-600 mb-4">{benefit.description}</p>
+            <a href="/demo" class="inline-flex items-center text-primary-600 font-medium group-hover:translate-x-2 transition-transform duration-200">
+              {benefit.cta}
+              <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+              </svg>
+            </a>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Integration Features -->
+  <section class="py-20">
+    <div class="container mx-auto px-4">
+      <div class="text-center mb-16">
+        <span class="text-sm font-semibold text-primary-600 uppercase tracking-wider">Efficiency</span>
+        <h2 class="text-3xl font-bold text-white mt-2 mb-4">
+          Transforming Customer Interactions with AI Agents
+        </h2>
+        <p class="text-white-600 max-w-2xl mx-auto">
+          AI Agents streamline communication, ensuring your salon never misses a beat. From handling FAQs to managing reservations, they enhance customer experiences at every touchpoint.
+        </p>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-8">
+        {integrations.map((integration) => (
+          <div class="bg-white/5 backdrop-blur-sm rounded-xl overflow-hidden border border-white/10" data-aos="fade-up">
+            <div class="aspect-video relative overflow-hidden">
+              <img 
+                src={integration.image} 
+                alt={integration.title}
+                class="w-full h-full object-cover"
+              />
+            </div>
+            <div class="p-6">
+              <h3 class="text-xl font-semibold text-white mb-2">{integration.title}</h3>
+              <p class="text-white-600">{integration.description}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="py-20">
+    <div class="container mx-auto px-4">
+      <div class="max-w-4xl mx-auto bg-white/5 backdrop-blur-sm rounded-2xl border border-white/10 p-12">
+        <div class="grid md:grid-cols-2 gap-8 items-center">
+          <div>
+            <h2 class="text-3xl font-bold text-white mb-4">Transform Your Salon Experience</h2>
+            <p class="text-white-600 mb-8">
+              Elevate your salon operations with our customized AI Agents. Streamline scheduling, enhance customer engagement, and boost your bookings effortlessly.
+            </p>
+            <div class="flex gap-4">
+              <a 
+                href="/demo" 
+                class="px-6 py-3 bg-white text-gray-900 rounded-lg font-medium hover:bg-white/90 transition-colors"
+              >
+                Request
+              </a>
+              <a 
+                href="/demo" 
+                class="px-6 py-3 bg-gradient-to-r from-[#0d9488] to-[#3b82f6] text-white rounded-lg font-medium hover:from-[#0b847a] hover:to-[#2563eb] transition-colors"
+              >
+                Demo
+              </a>
+            </div>
+          </div>
+          <div class="relative aspect-square rounded-xl overflow-hidden">
+            <img 
+              src="https://images.unsplash.com/photo-1560066984-138dadb4c035" 
+              alt="Salon Experience"
+              class="w-full h-full object-cover"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .text-white-600 {
+    color: rgba(255, 255, 255, 0.6);
+  }
+
+  .text-gradient {
+    background: linear-gradient(to right, var(--primary), #3b82f6);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+</style>

@@ -1,0 +1,120 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import Hero from '../../../components/industries/shared/Hero.astro';
+import Features from '../../../components/industries/shared/Features.astro';
+import Timeline from '../../../components/industries/shared/Timeline.astro';
+import Benefits from '../../../components/industries/shared/Benefits.astro';
+import CTA from '../../../components/industries/shared/CTA.astro';
+
+const features = {
+  title: "Transform Your Healthcare Practice",
+  subtitle: "Efficiency",
+  description: "Streamline your healthcare practice with AI Agents that handle appointment scheduling, patient inquiries, and follow-ups. Enhance patient care while reducing administrative burden.",
+  features: [
+    {
+      title: 'Intelligent Appointment Scheduling',
+      description: 'Let AI agents manage bookings, reschedules, and reminders automatically.',
+      image: 'https://images.unsplash.com/photo-1516549655169-df83a0774514'
+    },
+    {
+      title: '24/7 Patient Support',
+      description: 'Answer common questions and provide care instructions any time.',
+      image: 'https://images.unsplash.com/photo-1579684385127-1ef15d508118'
+    },
+    {
+      title: 'Follow-up Management',
+      description: 'Automate post-visit care instructions and appointment reminders.',
+      image: 'https://images.unsplash.com/photo-1581594693702-fbdc51b2763b'
+    }
+  ]
+};
+
+const timeline = {
+  title: "Seamless Patient Experience",
+  subtitle: "How It Works",
+  description: "See how our AI Agents handle patient interactions and appointment management efficiently",
+  steps: [
+    {
+      step: 1,
+      title: 'Initial Contact',
+      message: 'Patient: "I need to schedule a check-up appointment. What\'s your earliest availability?"',
+      response: "AI: I'll help you find the earliest available slot that works for you.",
+      icon: 'M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z'
+    },
+    {
+      step: 2,
+      title: 'Appointment Scheduling',
+      message: 'AI: "We have openings this Thursday at 10 AM or Friday at 2 PM. Which works better?"',
+      response: 'Patient: "Thursday at 10 AM works perfectly."',
+      icon: 'M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z'
+    },
+    {
+      step: 3,
+      title: 'Pre-Visit Information',
+      message: 'AI: "Great! Please arrive 15 minutes early to complete any necessary paperwork. Would you like directions to our clinic?"',
+      response: 'Patient: "Yes, please send the directions."',
+      icon: 'M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z'
+    },
+    {
+      step: 4,
+      title: 'Appointment Reminder',
+      message: 'AI: "Reminder: Your appointment is tomorrow at 10 AM. Please bring your insurance card and ID."',
+      response: null,
+      icon: 'M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z'
+    },
+    {
+      step: 5,
+      title: 'Follow-up Care',
+      message: 'AI: "How are you feeling after your visit? Don\'t forget to schedule your follow-up in 6 months."',
+      response: 'Patient: "I\'m feeling better, thanks! Yes, let\'s schedule the follow-up."',
+      icon: 'M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z'
+    }
+  ]
+};
+
+const benefits = {
+  title: "Enhance Your Practice with Intelligent AI Solutions",
+  benefits: [
+    {
+      title: 'Streamline Patient Communication',
+      description: 'Our AI Agents handle appointment scheduling and routine inquiries automatically.',
+      image: 'https://images.unsplash.com/photo-1516549655169-df83a0774514',
+      cta: 'Learn More'
+    },
+    {
+      title: 'Improve Patient Care',
+      description: 'Provide instant responses and follow-up care instructions 24/7.',
+      image: 'https://images.unsplash.com/photo-1579684385127-1ef15d508118',
+      cta: 'Discover'
+    },
+    {
+      title: 'Reduce Administrative Burden',
+      description: 'Automate routine tasks and focus more time on patient care.',
+      image: 'https://images.unsplash.com/photo-1581594693702-fbdc51b2763b',
+      cta: 'Connect'
+    }
+  ]
+};
+
+const cta = {
+  title: "Elevate Your Healthcare Practice",
+  description: "Transform your practice with our customized AI Agents. Streamline patient management, enhance communication, and improve care delivery effortlessly.",
+  image: "https://images.unsplash.com/photo-1516549655169-df83a0774514",
+  imageAlt: "Healthcare Practice Experience"
+};
+---
+
+<Layout 
+  title="Healthcare Practice AI Solutions"
+  description="Transform your healthcare practice with AI-powered automation and patient engagement solutions."
+>
+  <Hero
+    title="Revolutionize Your Healthcare Practice with"
+    description="Transform your practice operations and patient experience with AI. Automate appointment scheduling, enhance patient communication, and improve care delivery."
+  />
+  
+  <Features {...features} />
+  <Timeline {...timeline} />
+  <Benefits {...benefits} />
+  <CTA {...cta} />
+</Layout>
