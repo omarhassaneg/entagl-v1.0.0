@@ -1,0 +1,129 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Hero from '../../components/use-cases/shared/Hero.astro';
+import Features from '../../components/use-cases/shared/Features.astro';
+import Channels from '../../components/use-cases/shared/Channels.astro';
+import Benefits from '../../components/use-cases/shared/Benefits.astro';
+import Comparison from '../../components/use-cases/shared/Comparison.astro';
+import ApplicableBusinesses from '../../components/use-cases/shared/ApplicableBusinesses.astro';
+import CTA from '../../components/use-cases/shared/CTA.astro';
+import { icons } from '../../utils/icons';
+
+const features = {
+  title: "How AI-Powered Social Media Sales Works",
+  subtitle: "Features",
+  description: "Our AI solution transforms your social media engagement into meaningful sales conversations with intelligent automation.",
+  features: [
+    {
+      title: "Smart Engagement Triggers",
+      description: "AI automatically initiates conversations from clicks, likes, comments, or direct messages on your social content.",
+      icon: icons.conversation
+    },
+    {
+      title: "Intelligent Product Matching",
+      description: "Understands customer preferences and recommends the perfect products or services in real-time.",
+      icon: icons.tailored
+    },
+    {
+      title: "Direct Checkout Integration",
+      description: "Provides seamless purchase links, eliminating the need for website navigation and reducing drop-offs.",
+      icon: icons.integration
+    },
+    {
+      title: "Automated Upselling",
+      description: "Intelligently identifies opportunities to suggest relevant additional products or services.",
+      icon: icons.improvement
+    },
+    {
+      title: "Multi-Platform Support",
+      description: "Engages with customers across all major social media platforms and messaging apps.",
+      icon: icons.scale
+    },
+    {
+      title: "Performance Analytics",
+      description: "Tracks conversation metrics, conversion rates, and sales performance across channels.",
+      icon: icons.filter
+    }
+  ]
+};
+
+const channels = [
+  { name: "Google Ads", icon: icons.googleAds },
+  { name: "Instagram", icon: icons.instagram },
+  { name: "Facebook", icon: icons.facebook },
+  { name: "WhatsApp", icon: icons.whatsapp },
+  { name: "Telegram", icon: icons.telegram },
+  { name: "LinkedIn", icon: icons.linkedin },
+  { name: "Email", icon: icons.email },
+  { name: "Website Chat", icon: icons.chat }
+];
+
+const benefits = [
+  {
+    title: "Increased Revenue",
+    description: "Boost sales through intelligent upselling and cross-selling during customer interactions.",
+    icon: icons.improvement
+  },
+  {
+    title: "Cost Savings",
+    description: "Reduce dependency on large sales teams by automating repetitive sales tasks.",
+    icon: icons.scale
+  },
+  {
+    title: "Improved Experience",
+    description: "Provide personalized recommendations ensuring a seamless and engaging buying experience.",
+    icon: icons.tailored
+  }
+];
+
+const comparison = {
+  title: "Why Choose AI Over Traditional Social Selling?",
+  description: "Discover how AI-powered social media sales outperforms traditional methods.",
+  points: [
+    {
+      title: "Instant Engagement",
+      description: "Respond to customer interactions immediately, never missing a sales opportunity.",
+      icon: icons.conversation
+    },
+    {
+      title: "Smart Recommendations",
+      description: "Provide personalized product suggestions based on customer behavior and preferences.",
+      icon: icons.tailored
+    },
+    {
+      title: "Seamless Conversion",
+      description: "Convert interest into sales with direct checkout links and guided purchasing.",
+      icon: icons.improvement
+    }
+  ]
+};
+
+const businesses = [
+  "Retail stores",
+  "SaaS companies",
+  "Fitness memberships",
+  "Subscription services",
+  "Beauty brands",
+  "E-commerce stores",
+  "Digital products"
+];
+---
+
+<Layout 
+  title="Social Media Sales | AI-Powered Solutions"
+  description="Transform your social media engagement into sales with AI-powered conversational marketing."
+>
+  <Hero
+    title="Transform Social Media Sales with"
+    description="Boost your sales with conversational marketing powered by AI, turning social media engagement into meaningful interactions and direct sales opportunities."
+  />
+  <Features {...features} />
+  <Channels channels={channels} />
+  <Benefits benefits={benefits} />
+  <Comparison {...comparison} />
+  <ApplicableBusinesses businesses={businesses} />
+  <CTA 
+    title="Ready to Boost Your Social Media Sales?"
+    description="Experience the power of AI-driven social selling and transform your customer interactions into sales."
+  />
+</Layout>

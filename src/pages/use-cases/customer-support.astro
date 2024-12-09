@@ -1,0 +1,128 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Hero from '../../components/use-cases/shared/Hero.astro';
+import Features from '../../components/use-cases/shared/Features.astro';
+import Channels from '../../components/use-cases/shared/Channels.astro';
+import Benefits from '../../components/use-cases/shared/Benefits.astro';
+import Comparison from '../../components/use-cases/shared/Comparison.astro';
+import ApplicableBusinesses from '../../components/use-cases/shared/ApplicableBusinesses.astro';
+import CTA from '../../components/use-cases/shared/CTA.astro';
+import { icons } from '../../utils/icons';
+
+const features = {
+  title: "How AI-Powered Customer Support Works",
+  subtitle: "Features",
+  description: "Our AI solution transforms your customer support with intelligent automation and seamless issue resolution.",
+  features: [
+    {
+      title: "24/7 Support Coverage",
+      description: "Provide instant responses and assistance around the clock, ensuring customers never wait for help.",
+      icon: icons.scale
+    },
+    {
+      title: "Smart Issue Resolution",
+      description: "Automatically resolve common queries and problems while intelligently escalating complex cases.",
+      icon: icons.filter
+    },
+    {
+      title: "Multi-Language Support",
+      description: "Communicate with customers in their preferred language for better understanding and resolution.",
+      icon: icons.conversation
+    },
+    {
+      title: "Proactive Assistance",
+      description: "Anticipate customer needs and provide relevant information before they ask.",
+      icon: icons.tailored
+    },
+    {
+      title: "Seamless Escalation",
+      description: "Smoothly transfer complex cases to human agents with full context and history.",
+      icon: icons.integration
+    },
+    {
+      title: "Performance Analytics",
+      description: "Track resolution rates, response times, and customer satisfaction across all channels.",
+      icon: icons.improvement
+    }
+  ]
+};
+
+const channels = [
+  { name: "Google Ads", icon: icons.googleAds },
+  { name: "Instagram", icon: icons.instagram },
+  { name: "Facebook", icon: icons.facebook },
+  { name: "WhatsApp", icon: icons.whatsapp },
+  { name: "Telegram", icon: icons.telegram },
+  { name: "LinkedIn", icon: icons.linkedin },
+  { name: "Email", icon: icons.email },
+  { name: "Website Chat", icon: icons.chat }
+];
+
+const benefits = [
+  {
+    title: "Increased Revenue",
+    description: "Maintain high customer satisfaction with instant responses, increasing retention and repeat business.",
+    icon: icons.improvement
+  },
+  {
+    title: "Cost Savings",
+    description: "Operate 24/7 support while reducing the need for extensive support staff.",
+    icon: icons.scale
+  },
+  {
+    title: "Improved Quality",
+    description: "Filter and resolve common issues effectively while escalating only critical cases.",
+    icon: icons.filter
+  }
+];
+
+const comparison = {
+  title: "Why Choose AI Over Traditional Support?",
+  description: "Discover how AI-powered customer support outperforms traditional methods.",
+  points: [
+    {
+      title: "Always Available",
+      description: "Provide instant support 24/7 without waiting times or shift limitations.",
+      icon: icons.scale
+    },
+    {
+      title: "Consistent Quality",
+      description: "Deliver uniform support quality across all channels and interactions.",
+      icon: icons.tailored
+    },
+    {
+      title: "Smart Escalation",
+      description: "Efficiently handle routine queries while ensuring critical issues reach human agents.",
+      icon: icons.filter
+    }
+  ]
+};
+
+const businesses = [
+  "E-commerce platforms",
+  "Telecom providers",
+  "Healthcare organizations",
+  "SaaS companies",
+  "Travel agencies",
+  "Utility services"
+];
+---
+
+<Layout 
+  title="Customer Support | AI-Powered Solutions"
+  description="Transform your customer support with AI-powered automation and intelligent issue resolution."
+>
+  <Hero
+    title="Transform Customer Support with"
+    description="Deliver seamless 24/7 support with AI-driven assistance. Handle FAQs, resolve common issues, and ensure efficient escalation of critical cases."
+  />
+  <Features {...features} />
+  <Channels channels={channels} />
+  <Benefits benefits={benefits} />
+  <Comparison {...comparison} />
+  <ApplicableBusinesses businesses={businesses} />
+  <CTA 
+    title="Ready to Transform Your Customer Support?"
+    description="Experience the power of AI-driven customer support and deliver exceptional service around the clock."
+  />
+</Layout>

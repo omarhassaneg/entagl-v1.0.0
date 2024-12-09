@@ -1,0 +1,128 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Hero from '../../components/use-cases/shared/Hero.astro';
+import Features from '../../components/use-cases/shared/Features.astro';
+import Channels from '../../components/use-cases/shared/Channels.astro';
+import Benefits from '../../components/use-cases/shared/Benefits.astro';
+import Comparison from '../../components/use-cases/shared/Comparison.astro';
+import ApplicableBusinesses from '../../components/use-cases/shared/ApplicableBusinesses.astro';
+import CTA from '../../components/use-cases/shared/CTA.astro';
+import { icons } from '../../utils/icons';
+
+const features = {
+  title: "How AI-Powered Lead Generation Works",
+  subtitle: "Features",
+  description: "Our AI solution transforms your lead generation process with intelligent conversations and seamless data collection.",
+  features: [
+    {
+      title: "Instant Engagement",
+      description: "Automatically respond to social media interactions and ad clicks with personalized conversations.",
+      icon: icons.conversation
+    },
+    {
+      title: "Smart Data Collection",
+      description: "Naturally gather contact information and key details through engaging dialogue.",
+      icon: icons.filter
+    },
+    {
+      title: "Multi-Channel Presence",
+      description: "Connect with potential leads across all major social platforms and messaging apps.",
+      icon: icons.scale
+    },
+    {
+      title: "Real-Time Qualification",
+      description: "Assess lead quality and segment contacts based on their responses and behavior.",
+      icon: icons.tailored
+    },
+    {
+      title: "CRM Integration",
+      description: "Automatically sync captured leads with your existing CRM and marketing tools.",
+      icon: icons.integration
+    },
+    {
+      title: "Performance Analytics",
+      description: "Track conversion rates and engagement metrics across all channels.",
+      icon: icons.improvement
+    }
+  ]
+};
+
+const channels = [
+  { name: "Google Ads", icon: icons.googleAds },
+  { name: "Instagram", icon: icons.instagram },
+  { name: "Facebook", icon: icons.facebook },
+  { name: "WhatsApp", icon: icons.whatsapp },
+  { name: "Telegram", icon: icons.telegram },
+  { name: "LinkedIn", icon: icons.linkedin },
+  { name: "Email", icon: icons.email },
+  { name: "Website Chat", icon: icons.chat }
+];
+
+const benefits = [
+  {
+    title: "Increased Revenue",
+    description: "Higher conversion rates through personalized conversations instead of static landing pages.",
+    icon: icons.improvement
+  },
+  {
+    title: "Cost Savings",
+    description: "Reduce spending on landing page optimization while improving ad campaign ROI.",
+    icon: icons.scale
+  },
+  {
+    title: "Improved Quality",
+    description: "Capture accurate information and qualify leads in real-time through natural conversation.",
+    icon: icons.filter
+  }
+];
+
+const comparison = {
+  title: "Why Choose AI Over Traditional Landing Pages?",
+  description: "Discover how AI-powered lead generation outperforms traditional methods.",
+  points: [
+    {
+      title: "Dynamic Engagement",
+      description: "Replace static forms with interactive conversations that adapt to each prospect's interests.",
+      icon: icons.conversation
+    },
+    {
+      title: "Higher Conversion Rates",
+      description: "Engage leads where they are, eliminating friction and improving conversion rates.",
+      icon: icons.improvement
+    },
+    {
+      title: "Better Data Quality",
+      description: "Collect more accurate and detailed information through natural dialogue.",
+      icon: icons.filter
+    }
+  ]
+};
+
+const businesses = [
+  "E-commerce stores",
+  "Beauty salons",
+  "Fitness studios",
+  "Educational institutions",
+  "SaaS platforms",
+  "Event organizers"
+];
+---
+
+<Layout 
+  title="Lead Generation | AI-Powered Solutions"
+  description="Transform your lead generation with AI-powered conversational engagement across social media platforms."
+>
+  <Hero
+    title="Transform Lead Generation with"
+    description="Put conversational AI at the forefront of your social media campaigns. Engage potential customers directly through personalized conversations instead of traditional landing pages."
+  />
+  <Features {...features} />
+  <Channels channels={channels} />
+  <Benefits benefits={benefits} />
+  <Comparison {...comparison} />
+  <ApplicableBusinesses businesses={businesses} />
+  <CTA 
+    title="Ready to Transform Your Lead Generation?"
+    description="Experience the power of AI-driven lead generation and boost your conversion rates."
+  />
+</Layout>

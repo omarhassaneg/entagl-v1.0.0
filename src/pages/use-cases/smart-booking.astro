@@ -1,0 +1,128 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Hero from '../../components/use-cases/shared/Hero.astro';
+import Features from '../../components/use-cases/shared/Features.astro';
+import Channels from '../../components/use-cases/shared/Channels.astro';
+import Benefits from '../../components/use-cases/shared/Benefits.astro';
+import Comparison from '../../components/use-cases/shared/Comparison.astro';
+import ApplicableBusinesses from '../../components/use-cases/shared/ApplicableBusinesses.astro';
+import CTA from '../../components/use-cases/shared/CTA.astro';
+import { icons } from '../../utils/icons';
+
+const features = {
+  title: "How AI-Powered Smart Booking Works",
+  subtitle: "Features",
+  description: "Our AI solution transforms your booking process with intelligent automation and seamless customer interactions.",
+  features: [
+    {
+      title: "Intelligent Client Qualification",
+      description: "AI understands client needs and matches them to your services based on location, preferences, and policies.",
+      icon: icons.tailored
+    },
+    {
+      title: "Automated Deposit Collection",
+      description: "Securely collect deposits from qualified clients to ensure serious bookings and reduce no-shows.",
+      icon: icons.improvement
+    },
+    {
+      title: "Flexible Control System",
+      description: "Choose when to step in - from early qualification to post-deposit confirmation.",
+      icon: icons.filter
+    },
+    {
+      title: "Smart Scheduling",
+      description: "Automatically manage appointments, send confirmations, and handle reminders.",
+      icon: icons.conversation
+    },
+    {
+      title: "Multi-Channel Booking",
+      description: "Accept bookings through various platforms while maintaining consistent service quality.",
+      icon: icons.scale
+    },
+    {
+      title: "Seamless Integration",
+      description: "Connect with your existing calendar and booking systems for streamlined operations.",
+      icon: icons.integration
+    }
+  ]
+};
+
+const channels = [
+  { name: "Google Ads", icon: icons.googleAds },
+  { name: "Instagram", icon: icons.instagram },
+  { name: "Facebook", icon: icons.facebook },
+  { name: "WhatsApp", icon: icons.whatsapp },
+  { name: "Telegram", icon: icons.telegram },
+  { name: "LinkedIn", icon: icons.linkedin },
+  { name: "Email", icon: icons.email },
+  { name: "Website Chat", icon: icons.chat }
+];
+
+const benefits = [
+  {
+    title: "Increased Revenue",
+    description: "Ensure only serious customers proceed by qualifying them and collecting deposits, reducing no-shows.",
+    icon: icons.improvement
+  },
+  {
+    title: "Cost Savings",
+    description: "Automate booking management, reducing manual administrative work.",
+    icon: icons.scale
+  },
+  {
+    title: "Improved Experience",
+    description: "Offer a streamlined booking experience with flexibility for businesses to intervene as needed.",
+    icon: icons.tailored
+  }
+];
+
+const comparison = {
+  title: "Why Choose AI Over Traditional Booking?",
+  description: "Discover how AI-powered smart booking outperforms traditional methods.",
+  points: [
+    {
+      title: "Intelligent Qualification",
+      description: "Automatically qualify clients based on your criteria before booking.",
+      icon: icons.filter
+    },
+    {
+      title: "24/7 Availability",
+      description: "Accept bookings anytime while maintaining consistent service quality.",
+      icon: icons.scale
+    },
+    {
+      title: "Reduced No-Shows",
+      description: "Secure bookings with deposits and automated follow-ups.",
+      icon: icons.improvement
+    }
+  ]
+};
+
+const businesses = [
+  "Salons",
+  "Spas",
+  "Healthcare providers",
+  "Personal trainers",
+  "Legal consultants",
+  "Home service providers"
+];
+---
+
+<Layout 
+  title="Smart Booking | AI-Powered Solutions"
+  description="Transform your booking process with AI-powered automation and client qualification."
+>
+  <Hero
+    title="Transform Booking Management with"
+    description="Let AI handle the first line of interaction by understanding potential clients' needs and matching them to your services. Automate scheduling while maintaining control over the process."
+  />
+  <Features {...features} />
+  <Channels channels={channels} />
+  <Benefits benefits={benefits} />
+  <Comparison {...comparison} />
+  <ApplicableBusinesses businesses={businesses} />
+  <CTA 
+    title="Ready to Streamline Your Booking Process?"
+    description="Experience the power of AI-driven booking management and transform your customer interactions."
+  />
+</Layout>

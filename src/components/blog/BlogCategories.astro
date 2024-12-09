@@ -8,17 +8,128 @@ const categories = [
 ];
 ---
 
-<div class="flex flex-wrap gap-3 justify-center mt-2" data-aos="fade-up">
-  {categories.map((category, index) => (
-    <button 
-      class={`px-6 py-2 rounded-full text-sm font-medium transition-all duration-200 ${
-        index === 0 
-          ? 'bg-gradient-to-r from-[#0d9488] to-[#3b82f6] text-white' 
-          : 'bg-white/10 text-white-600 hover:bg-white/20'
-      }`}
-    >
-      {category.name}
-      <span class="ml-2 text-xs opacity-60">({category.count})</span>
-    </button>
-  ))}
+<div class="flex flex-wrap items-center gap-3 justify-center mt-2" data-aos="fade-up">
+  <div class="flex flex-wrap gap-3 justify-center">
+    {categories.map((category, index) => (
+      <button 
+        data-category={category.name}
+        class={`px-6 py-2 rounded-full text-sm font-medium transition-all duration-200 category-filter ${
+          index === 0 
+            ? 'active bg-gradient-to-r from-[#0d9488] to-[#3b82f6] text-white' 
+            : 'bg-white/10 text-white-600 hover:bg-white/20'
+        }`}
+      >
+        {category.name}
+        <span class="ml-2 text-xs opacity-60">({category.count})</span>
+      </button>
+    ))}
+  </div>
+  
+  <button 
+    id="clear-filter"
+    class="px-6 py-2 rounded-full text-sm font-medium transition-all duration-200 border border-white/20 text-white-600 hover:bg-white/10 hover:border-white/40 opacity-0 pointer-events-none"
+  >
+    <div class="flex items-center gap-2">
+      <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+      </svg>
+      Clear Filter
+    </div>
+  </button>
 </div>
+
+<script>
+  const filterButtons = document.querySelectorAll('.category-filter');
+  const blogCards = document.querySelectorAll('[data-category]');
+  const clearFilterBtn = document.getElementById('clear-filter');
+  const defaultFilter = document.querySelector('[data-category="All"]');
+
+  function resetFilters() {
+    // Reset all cards
+    blogCards.forEach(card => {
+      card.style.display = 'block';
+      card.style.opacity = '1';
+      card.style.transform = 'translateY(0)';
+    });
+
+    // Reset button styles
+    filterButtons.forEach(btn => {
+      btn.classList.remove('active', 'bg-gradient-to-r', 'from-[#0d9488]', 'to-[#3b82f6]', 'text-white');
+      btn.classList.add('bg-white/10', 'text-white-600');
+    });
+
+    // Set "All" as active
+    defaultFilter.classList.remove('bg-white/10', 'text-white-600');
+    defaultFilter.classList.add('active', 'bg-gradient-to-r', 'from-[#0d9488]', 'to-[#3b82f6]', 'text-white');
+
+    // Hide clear filter button
+    clearFilterBtn.style.opacity = '0';
+    clearFilterBtn.style.pointerEvents = 'none';
+  }
+
+  clearFilterBtn.addEventListener('click', resetFilters);
+
+  filterButtons.forEach(button => {
+    button.addEventListener('click', () => {
+      const selectedCategory = button.getAttribute('data-category');
+      
+      // Update button states
+      filterButtons.forEach(btn => {
+        btn.classList.remove('active', 'bg-gradient-to-r', 'from-[#0d9488]', 'to-[#3b82f6]', 'text-white');
+        btn.classList.add('bg-white/10', 'text-white-600');
+      });
+      
+      button.classList.remove('bg-white/10', 'text-white-600');
+      button.classList.add('active', 'bg-gradient-to-r', 'from-[#0d9488]', 'to-[#3b82f6]', 'text-white');
+
+      // Show/hide clear filter button
+      if (selectedCategory === 'All') {
+        clearFilterBtn.style.opacity = '0';
+        clearFilterBtn.style.pointerEvents = 'none';
+      } else {
+        clearFilterBtn.style.opacity = '1';
+        clearFilterBtn.style.pointerEvents = 'auto';
+      }
+
+      // Filter blog posts
+      blogCards.forEach(card => {
+        const cardCategory = card.getAttribute('data-category');
+        if (selectedCategory === 'All' || selectedCategory === cardCategory) {
+          card.style.display = 'block';
+          // Add fade-in animation
+          card.style.opacity = '0';
+          card.style.transform = 'translateY(20px)';
+          requestAnimationFrame(() => {
+            card.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+            card.style.opacity = '1';
+            card.style.transform = 'translateY(0)';
+          });
+        } else {
+          card.style.display = 'none';
+        }
+      });
+    });
+  });
+</script>
+
+<style>
+  .category-filter {
+    transition: all 0.3s ease;
+  }
+
+  .category-filter:hover {
+    transform: translateY(-2px);
+  }
+
+  .category-filter.active {
+    box-shadow: 0 4px 12px rgba(13, 148, 136, 0.2);
+  }
+
+  #clear-filter {
+    transition: all 0.3s ease;
+  }
+
+  #clear-filter:hover {
+    transform: translateY(-2px);
+  }
+</style>

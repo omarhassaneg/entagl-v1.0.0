@@ -1,0 +1,40 @@
+---
+interface ComparisonPoint {
+  title: string;
+  description: string;
+  icon: string;
+}
+
+interface Props {
+  title: string;
+  description: string;
+  points: ComparisonPoint[];
+}
+
+const { title, description, points } = Astro.props;
+---
+
+<section class="py-20 bg-white/5">
+  <div class="container mx-auto px-4">
+    <div class="text-center mb-16">
+      <h2 class="text-3xl font-bold text-white mb-4">{title}</h2>
+      <p class="text-white-600 max-w-2xl mx-auto">
+        {description}
+      </p>
+    </div>
+
+    <div class="grid md:grid-cols-3 gap-8">
+      {points.map(point => (
+        <div class="p-6 bg-white/10 rounded-xl hover:bg-white/20 transition-all duration-300">
+          <div class="w-12 h-12 bg-gradient-to-r from-[#0d9488] to-[#3b82f6] rounded-lg flex items-center justify-center mb-4">
+            <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d={point.icon} />
+            </svg>
+          </div>
+          <h3 class="text-xl font-semibold text-white mb-3">{point.title}</h3>
+          <p class="text-white-600">{point.description}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
